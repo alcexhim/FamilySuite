@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Website>
+	<Pages>
+		<Page FileName="dashboard" MasterPageFileName="Admin" ClassName="FamilySuite\Tenant\Modules\Frontend\Pages\DashboardPage" CssClass="DashboardPage">
+			<References>
+				<Reference TagPrefix="wfx" NamespacePath="WebFX\Controls" />
+				<Reference TagPrefix="html" NamespacePath="WebFX\HTMLControls" />
+			</References>
+			<Content>
+				<wfx:Section PlaceholderID="Content">
+				</wfx:Section>
+			</Content>
+		</Page>
+	</Pages>
+</Website>

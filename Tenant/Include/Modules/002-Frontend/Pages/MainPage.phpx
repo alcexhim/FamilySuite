@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Website>
+	<Pages>
+		<Page FileName="" MasterPageFileName="Blank" ClassName="FamilySuite\Tenant\Modules\Frontend\Pages\MainPage" CssClass="MainPage">
+			<References>
+				<Reference TagPrefix="wfx" NamespacePath="WebFX\Controls" />
+				<Reference TagPrefix="html" NamespacePath="WebFX\HTMLControls" />
+			</References>
+			<Content>
+				<wfx:Section PlaceholderID="Content">
+					<div style="height: 960px;">
+						<h1><html:HTMLControlLiteral Value="$(Configuration:Application.Title)" /></h1>
+						<h3>Welcome to our family Web site</h3>
+						
+						<p>Family members, <html:HTMLControlAnchor TargetURL="~/dashboard">go here</html:HTMLControlAnchor> to access your dashboard.</p>
+						<p>Guests, please take some time to <html:HTMLControlAnchor TargetURL="~/guestbook">sign the guestbook</html:HTMLControlAnchor>!</p>
+					</div>
+				</wfx:Section>
+			</Content>
+		</Page>
+	</Pages>
+</Website>

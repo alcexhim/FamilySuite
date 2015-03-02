@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Website>
+	<MasterPages>
+		<MasterPage FileName="Blank" ClassName="FamilySuite\Tenant\MasterPages\Blank">
+			<References>
+				<Reference TagPrefix="wfx" NamespacePath="WebFX\Controls" />
+				<Reference TagPrefix="html" NamespacePath="WebFX\HTMLControls" />
+			</References>
+			<Variables>
+				<Variable Name="WebFXStaticPath" Value="http://static.alcehosting.net/dropins/WebFramework" />
+			</Variables>
+			<StyleSheets>
+				<StyleSheet FileName="$(WebFXStaticPath)/StyleSheets/Main.css" />
+				<StyleSheet FileName="$(WebFXStaticPath)/StyleSheets/Avondale/Main.css" />
+			</StyleSheets>
+			<Content>
+				<nav class="Top">
+					<div class="Logo">
+						<span class="Primary"><html:HTMLControlLiteral Value="$(Configuration:Application.Logo.Primary)" /></span><span class="Secondary"><html:HTMLControlLiteral Value="$(Configuration:Application.Logo.Secondary)" /></span>
+					</div>
+					<ul class="Menu Horizontal">
+						<li>
+							<a href="#">Wedding</a>
+						</li>
+						<li>
+							<a href="#">House</a>
+						</li>
+						<li>
+							<a href="#">Family</a>
+						</li>
+						<li>
+							<a href="#">Contact</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="Content">
+					<wfx:SectionPlaceholder ID="Content" />
+				</div>
+				<footer>
+					<p><html:HTMLControlLiteral Value="$(Configuration:Application.Title)" /></p>
+					<p><html:HTMLControlLiteral Value="$(Configuration:Application.Copyright)" /></p>
+				</footer>
+			</Content>
+		</MasterPage>
+	</MasterPages>
+</Website>
