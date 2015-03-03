@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Website>
 	<Pages>
-		<Page FileName="dashboard" MasterPageFileName="Admin" ClassName="FamilySuite\Tenant\Modules\Frontend\Pages\DashboardPage" CssClass="DashboardPage">
+		<Page FileName="dashboard" MasterPageFileName="Admin" CodeBehindClassName="FamilySuite\Tenant\Modules\Frontend\Pages\DashboardPage" CssClass="DashboardPage">
 			<References>
 				<Reference TagPrefix="wfx" NamespacePath="WebFX\Controls" />
 				<Reference TagPrefix="html" NamespacePath="WebFX\HTMLControls" />

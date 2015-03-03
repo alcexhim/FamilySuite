@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Website>
 	<MasterPages>
-		<MasterPage FileName="Blank" ClassName="FamilySuite\Tenant\MasterPages\Blank">
+		<MasterPage FileName="Blank" CodeBehindClassName="FamilySuite\Tenant\MasterPages\Blank">
 			<References>
 				<Reference TagPrefix="wfx" NamespacePath="WebFX\Controls" />
 				<Reference TagPrefix="html" NamespacePath="WebFX\HTMLControls" />
 			</References>
-			<Variables>
-				<Variable Name="WebFXStaticPath" Value="http://static.alcehosting.net/dropins/WebFramework" />
-			</Variables>
 			<StyleSheets>
-				<StyleSheet FileName="$(WebFXStaticPath)/StyleSheets/Main.css" />
-				<StyleSheet FileName="$(WebFXStaticPath)/StyleSheets/Avondale/Main.css" />
+				<StyleSheet FileName="$(Configuration:WebFramework.StaticPath)/StyleSheets/Main.css" />
+				<StyleSheet FileName="$(Configuration:WebFramework.StaticPath)/StyleSheets/Avondale/Main.css" />
 			</StyleSheets>
 			<Content>
 				<nav class="Top">
