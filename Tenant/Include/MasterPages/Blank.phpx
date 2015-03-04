@@ -15,20 +15,14 @@
 					<div class="Logo">
 						<span class="Primary"><html:HTMLControlLiteral Value="$(Configuration:Application.Logo.Primary)" /></span><span class="Secondary"><html:HTMLControlLiteral Value="$(Configuration:Application.Logo.Secondary)" /></span>
 					</div>
-					<ul class="Menu Horizontal">
-						<li>
-							<a href="#">Wedding</a>
-						</li>
-						<li>
-							<a href="#">House</a>
-						</li>
-						<li>
-							<a href="#">Family</a>
-						</li>
-						<li>
-							<a href="#">Contact</a>
-						</li>
-					</ul>
+					<wfx:Menu Orientation="Horizontal">
+						<Items>
+							<wfx:MenuItemCommand Title="Wedding" />
+							<wfx:MenuItemCommand Title="House" />
+							<wfx:MenuItemCommand Title="Family" />
+							<wfx:MenuItemCommand Title="Contact" />
+						</Items>
+					</wfx:Menu>
 				</nav>
 				<div class="Content">
 					<wfx:SectionPlaceholder ID="Content" />
