@@ -9,11 +9,11 @@
 			<Content>
 				<wfx:Section PlaceholderID="Content">
 					<div style="height: 960px;">
-						<h1><html:HTMLControlLiteral Value="$(Configuration:Application.Title)" /></h1>
+						<h1><html:Literal Value="$(Configuration:Application.Title)" /></h1>
 						<h3>Welcome to our family Web site</h3>
 						
-						<p>Family members, <html:HTMLControlAnchor TargetURL="~/dashboard">go here</html:HTMLControlAnchor> to access your dashboard.</p>
-						<p>Guests, please take some time to <html:HTMLControlAnchor TargetURL="~/guestbook">sign the guestbook</html:HTMLControlAnchor>!</p>
+						<p>Family members, <html:Anchor TargetURL="~/dashboard">go here</html:Anchor> to access your dashboard.</p>
+						<p>Guests, please take some time to <html:Anchor TargetURL="~/guestbook">sign the guestbook</html:Anchor>!</p>
 					</div>
 				</wfx:Section>
 			</Content>
