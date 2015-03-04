@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Website>
+<Website xmlns="http://www.alceproject.net/xmlns/WebFX/Parser">
 	<MasterPages>
 		<MasterPage FileName="Blank" CodeBehindClassName="FamilySuite\Tenant\MasterPages\Blank">
 			<References>
@@ -11,9 +11,9 @@
 				<StyleSheet FileName="$(Configuration:WebFramework.StaticPath)/StyleSheets/Avondale/Main.css" />
 			</StyleSheets>
 			<Content>
-				<nav class="Top">
+				<html:Navigation CssClass="Top">
 					<div class="Logo">
-						<span class="Primary"><html:HTMLControlLiteral Value="$(Configuration:Application.Logo.Primary)" /></span><span class="Secondary"><html:HTMLControlLiteral Value="$(Configuration:Application.Logo.Secondary)" /></span>
+						<html:Anchor TargetURL="~/"><span class="Primary"><html:Literal Value="$(Configuration:Application.Logo.Primary)" /></span><span class="Secondary"><html:Literal Value="$(Configuration:Application.Logo.Secondary)" /></span></html:Anchor>
 					</div>
 					<wfx:Menu Orientation="Horizontal">
 						<Items>
@@ -23,14 +23,14 @@
 							<wfx:MenuItemCommand Title="Contact" />
 						</Items>
 					</wfx:Menu>
-				</nav>
+				</html:Navigation>
 				<div class="Content">
 					<wfx:SectionPlaceholder ID="Content" />
 				</div>
-				<footer>
-					<p><html:HTMLControlLiteral Value="$(Configuration:Application.Title)" /></p>
-					<p><html:HTMLControlLiteral Value="$(Configuration:Application.Copyright)" /></p>
-				</footer>
+				<html:Footer>
+					<p><html:Literal Value="$(Configuration:Application.Title)" /></p>
+					<p><html:Literal Value="$(Configuration:Application.Copyright)" /></p>
+				</html:Footer>
 			</Content>
 		</MasterPage>
 	</MasterPages>
