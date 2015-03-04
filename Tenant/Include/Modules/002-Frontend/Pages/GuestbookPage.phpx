@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Website>
+	<Pages>
+		<Page FileName="guestbook" MasterPageFileName="Blank" ClassName="FamilySuite\Tenant\Modules\Frontend\Pages\GuestbookPage" CssClass="GuestbookPage">
+			<References>
+				<Reference TagPrefix="wfx" NamespacePath="WebFX\Controls" />
+				<Reference TagPrefix="html" NamespacePath="WebFX\HTMLControls" />
+			</References>
+			<Content>
+				<wfx:Section PlaceholderID="Content">
+					<div style="height: 960px;">
+						<form method="POST">
+							<wfx:FormView>
+								<Items>
+									<wfx:FormViewItemText ID="txtFullName" Name="guest_FullName" Title="Full name" />
+									<wfx:FormViewItemText ID="txtEmailAddress" Name="guest_EmailAddress" Title="E-mail address" />
+									<wfx:FormViewItemMemo ID="txtContent" Name="guest_Content" Title="Message" />
+								</Items>
+							</wfx:FormView>
+						</form>
+					</div>
+				</wfx:Section>
+			</Content>
+		</Page>
+	</Pages>
+</Website>
