@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Website>
+	<Pages>
+		<Page FileName="members" MasterPageFileName="Admin" CodeBehindClassName="FamilySuite\Tenant\Modules\Frontend\Pages\MemberBrowsePage">
+			<References>
+				<Reference TagPrefix="wfx" NamespacePath="WebFX\Controls" />
+				<Reference TagPrefix="html" NamespacePath="WebFX\HTMLControls" />
+			</References>
+			<Content>
+				<wfx:Section PlaceholderID="Content">
+					<wfx:ListView>
+						<Columns>
+							<wfx:ListViewColumn ID="lvcName" Title="Name" />
+							<wfx:ListViewColumn ID="lvcAge" Title="Age" />
+						</Columns>
+						<Items>
+							<wfx:ListViewItem>
+								<Columns>
+									<wfx:ListViewItemColumn ID="lvcName" Content="Lily Azcona" />
+									<wfx:ListViewItemColumn ID="lvcAge" Content="24 years" />
+								</Columns>
+							</wfx:ListViewItem>
+							<wfx:ListViewItem>
+								<Columns>
+									<wfx:ListViewItemColumn ID="lvcName" Content="Michael Becker" />
+									<wfx:ListViewItemColumn ID="lvcAge" Content="23 years" />
+								</Columns>
+							</wfx:ListViewItem>
+						</Items>
+					</wfx:ListView>
+				</wfx:Section>
+			</Content>
+		</Page>
+	</Pages>
+</Website>
