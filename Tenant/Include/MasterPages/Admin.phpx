@@ -36,8 +36,9 @@
 					</div>
 					<wfx:Menu ID="mnuSidebar" Orientation="Vertical">
 						<Items>
-							<wfx:MenuItemCommand Title="Dashboard" IconName="tachometer" TargetURL="~/dashboard" />
-							<wfx:MenuItemCommand Title="Members" IconName="users">
+							<wfx:MenuItemHeader Title="Navigation" />
+							<wfx:MenuItemCommand ID="mnuSidebarDashboard" Title="Dashboard" IconName="tachometer" TargetURL="~/dashboard" />
+							<wfx:MenuItemCommand ID="mnuSidebarMembers" Title="Members" IconName="users">
 								<Items>
 									<wfx:MenuItemCommand Title="Enroll New Member" />
 									<wfx:MenuItemCommand Title="Browse Current Members" TargetURL="~/members" />
