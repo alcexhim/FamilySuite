@@ -9,7 +9,7 @@
 			<Content>
 				<wfx:Section PlaceholderID="Content">
 					<div style="height: 960px;">
-						<form method="POST">
+						<html:Form Method="Post">
 							<wfx:FormView>
 								<Items>
 									<wfx:FormViewItemText ID="txtFullName" Name="guest_FullName" Title="Full name" />
@@ -17,7 +17,7 @@
 									<wfx:FormViewItemMemo ID="txtContent" Name="guest_Content" Title="Message" />
 								</Items>
 							</wfx:FormView>
-						</form>
+						</html:Form>
 					</div>
 				</wfx:Section>
 			</Content>
