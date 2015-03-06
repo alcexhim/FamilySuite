@@ -8,7 +8,7 @@
 			</References>
 			<StyleSheets>
 				<StyleSheet FileName="$(Configuration:WebFramework.StaticPath)/StyleSheets/Main.css" />
-				<StyleSheet FileName="$(Configuration:WebFramework.StaticPath)/StyleSheets/Avondale/Main.css" />
+				<StyleSheet FileName="$(Configuration:WebFramework.StaticPath)/StyleSheets/$(Configuration:Application.ThemeName)/Main.css" />
 			</StyleSheets>
 			<Content>
 				<html:Navigation CssClass="Top">

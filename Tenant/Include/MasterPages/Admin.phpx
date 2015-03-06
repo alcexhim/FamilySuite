@@ -8,7 +8,7 @@
 			</References>
 			<StyleSheets>
 				<StyleSheet FileName="$(Configuration:WebFramework.StaticPath)/StyleSheets/Main.css" />
-				<StyleSheet FileName="$(Configuration:WebFramework.StaticPath)/StyleSheets/Avondale/Main.css" />
+				<StyleSheet FileName="$(Configuration:WebFramework.StaticPath)/StyleSheets/$(Configuration:Application.ThemeName)/Main.css" />
 			</StyleSheets>
 			<Content xmlns="http://www.w3.org/1999/xhtml" xmlns:wfx="http://www.alceproject.net/xmlns/WebFX/WebControls" xmlns:html="http://www.alceproject.net/xmlns/WebFX/HTMLControls">
 				<html:Navigation CssClass="Top">
