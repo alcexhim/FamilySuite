@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Website>
 	<Pages>
-		<Page FileName="members" MasterPageFileName="Admin" CodeBehindClassName="FamilySuite\Tenant\Modules\Frontend\Pages\MemberBrowsePage">
+		<Page FileName="members/$(memberName)" MasterPageFileName="Admin" CodeBehindClassName="FamilySuite\Tenant\Modules\Frontend\Pages\MemberBrowsePage">
 			<References>
 				<Reference TagPrefix="wfx" NamespacePath="Phast\WebControls" />
 				<Reference TagPrefix="html" NamespacePath="Phast\HTMLControls" />
