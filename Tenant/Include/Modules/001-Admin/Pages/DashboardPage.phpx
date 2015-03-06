@@ -10,6 +10,9 @@
 				<wfx:Section PlaceholderID="Content">
 				</wfx:Section>
 			</Content>
+			<ServerVariables>
+				<Variable Name="RequireLogin" Value="true" />
+			</ServerVariables>
 		</Page>
 	</Pages>
 </Website>
