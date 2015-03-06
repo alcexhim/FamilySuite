@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Website>
+	<Pages>
+		<Page FileName="error" MasterPageFileName="MessagePage" ClassName="FamilySuite\Tenant\Pages\ErrorPage">
+			<References>
+				<Reference TagPrefix="wfx" NamespacePath="WebFX\Controls" />
+				<Reference TagPrefix="html" NamespacePath="WebFX\HTMLControls" />
+			</References>
+		</Page>
+	</Pages>
+</Website>
