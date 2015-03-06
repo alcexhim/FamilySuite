@@ -2,8 +2,9 @@
 	namespace FamilySuite\Tenant\Modules\Frontend\Pages;
 	
 	use Phast\Parser\PhastPage;
-	
-	class MainPage extends PhastPage
+	use Phast\EventArgs;
+		
+	class LoginPage extends PhastPage
 	{
 	}
 ?>

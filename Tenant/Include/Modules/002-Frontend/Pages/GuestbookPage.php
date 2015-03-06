@@ -1,9 +1,9 @@
 <?php
 	namespace FamilySuite\Tenant\Modules\Frontend\Pages;
 	
-	use WebFX\Parser\WebFXPage;
+	use Phast\Parser\PhastPage;
 	
-	class GuestbookPage extends WebFXPage
+	class GuestbookPage extends PhastPage
 	{
 	}
 ?>

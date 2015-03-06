@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Website xmlns="http://www.alceproject.net/xmlns/Phast/Parser">
+	<MasterPages>
+		<MasterPage FileName="MessagePage" CodeBehindClassName="FamilySuite\Tenant\MasterPages\MessagePage">
+			<References>
+				<Reference TagPrefix="wfx" NamespacePath="Phast\Controls" />
+				<Reference TagPrefix="html" NamespacePath="Phast\HTMLControls" />
+			</References>
+			<StyleSheets>
+				<StyleSheet FileName="$(Configuration:System.StaticPath)/StyleSheets/Main.css" />
+				<StyleSheet FileName="$(Configuration:System.StaticPath)/StyleSheets/$(Configuration:Application.ThemeName)/Main.css" />
+			</StyleSheets>
+			<Content>
+				<html:Heading Level="1"><html:Literal ID="lblMessageTitle" Value="An unexpected error has occurred" /></html:Heading>
+				<html:Heading Level="3"><html:Literal ID="lblMessageSubtitle" Value="We are working to fix this issue as soon as possible" /></html:Heading>
+				<div class="Panel">
+					<div class="Content">
+						<p><?php echo($this->MessageContent); ?></p>
+					</div>
+				</div>
+			</Content>
+		</MasterPage>
+	</MasterPages>
+</Website>
