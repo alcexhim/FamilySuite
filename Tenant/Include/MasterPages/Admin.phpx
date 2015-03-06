@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Website xmlns="http://www.alceproject.net/xmlns/WebFX/Parser">
+<Website xmlns="http://www.alceproject.net/xmlns/Phast/Parser">
 	<MasterPages>
 		<MasterPage FileName="Admin" CodeBehindClassName="FamilySuite\Tenant\MasterPages\Admin">
 			<References>
-				<Reference TagPrefix="wfx" NamespacePath="WebFX\Controls" />
-				<Reference TagPrefix="html" NamespacePath="WebFX\HTMLControls" />
+				<Reference TagPrefix="wfx" NamespacePath="Phast\WebControls" />
+				<Reference TagPrefix="html" NamespacePath="Phast\HTMLControls" />
 			</References>
 			<StyleSheets>
-				<StyleSheet FileName="$(Configuration:WebFramework.StaticPath)/StyleSheets/Main.css" />
-				<StyleSheet FileName="$(Configuration:WebFramework.StaticPath)/StyleSheets/$(Configuration:Application.ThemeName)/Main.css" />
+				<StyleSheet FileName="$(Configuration:System.StaticPath)/StyleSheets/Main.css" />
+				<StyleSheet FileName="$(Configuration:System.StaticPath)/StyleSheets/$(Configuration:Application.ThemeName)/Main.css" />
 			</StyleSheets>
-			<Content xmlns="http://www.w3.org/1999/xhtml" xmlns:wfx="http://www.alceproject.net/xmlns/WebFX/WebControls" xmlns:html="http://www.alceproject.net/xmlns/WebFX/HTMLControls">
+			<Content xmlns="http://www.w3.org/1999/xhtml" xmlns:wfx="http://www.alceproject.net/xmlns/Phast/WebControls" xmlns:html="http://www.alceproject.net/xmlns/Phast/HTMLControls">
 				<html:Navigation CssClass="Top">
 					<div class="Logo">
 						<html:Anchor TargetURL="~/"><span class="Primary"><html:Literal Value="$(Configuration:Application.Logo.Primary)" /></span><span class="Secondary"><html:Literal Value="$(Configuration:Application.Logo.Secondary)" /></span></html:Anchor>

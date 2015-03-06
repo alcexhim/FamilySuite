@@ -3,8 +3,8 @@
 	<Pages>
 		<Page FileName="dashboard" MasterPageFileName="Admin" CodeBehindClassName="FamilySuite\Tenant\Modules\Frontend\Pages\DashboardPage" CssClass="DashboardPage">
 			<References>
-				<Reference TagPrefix="wfx" NamespacePath="WebFX\Controls" />
-				<Reference TagPrefix="html" NamespacePath="WebFX\HTMLControls" />
+				<Reference TagPrefix="wfx" NamespacePath="Phast\WebControls" />
+				<Reference TagPrefix="html" NamespacePath="Phast\HTMLControls" />
 			</References>
 			<Content>
 				<wfx:Section PlaceholderID="Content">

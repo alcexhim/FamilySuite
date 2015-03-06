@@ -3,8 +3,8 @@
 	<Pages>
 		<Page FileName="error" MasterPageFileName="MessagePage" ClassName="FamilySuite\Tenant\Pages\ErrorPage">
 			<References>
-				<Reference TagPrefix="wfx" NamespacePath="WebFX\Controls" />
-				<Reference TagPrefix="html" NamespacePath="WebFX\HTMLControls" />
+				<Reference TagPrefix="wfx" NamespacePath="Phast\Controls" />
+				<Reference TagPrefix="html" NamespacePath="Phast\HTMLControls" />
 			</References>
 		</Page>
 	</Pages>

@@ -1,9 +1,9 @@
 <?php
 	namespace FamilySuite\Tenant\Pages;
 	
-	use WebFX\Parser\WebFXPage;
+	use Phast\Parser\PhastPage;
 	
-	class ErrorPage extends WebFXPage
+	class ErrorPage extends PhastPage
 	{
 	}
 ?>

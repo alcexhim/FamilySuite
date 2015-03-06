@@ -1,10 +1,10 @@
 <?php
-	use WebFX\System;
-	use WebFX\ModulePage;
-use WebFX\Parser\WebFXParser;
-use WebFX\Module;
+	use Phast\System;
+	use Phast\ModulePage;
+	use Phast\Parser\PhastParser;
+	use Phast\Module;
 	
-	$parser = new WebFXParser();
+	$parser = new PhastParser();
 
 	global $RootPath;
 	$thisRootPath = dirname(__FILE__);

@@ -1,10 +1,10 @@
 <?php
 	namespace FamilySuite\Tenant\Modules\Frontend\Pages;
 	
-	use WebFX\Parser\WebFXPage;
-	use WebFX\EventArgs;
+	use Phast\Parser\PhastPage;
+	use Phast\EventArgs;
 		
-	class MemberBrowsePage extends WebFXPage
+	class MemberBrowsePage extends PhastPage
 	{
 		public function OnInitialized(EventArgs $e)
 		{

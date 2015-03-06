@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Website xmlns="http://www.alceproject.net/xmlns/WebFX/Parser">
+<Website xmlns="http://www.alceproject.net/xmlns/Phast/Parser">
 	<MasterPages>
 		<MasterPage FileName="MessagePage" CodeBehindClassName="FamilySuite\Tenant\MasterPages\MessagePage">
 			<References>
-				<Reference TagPrefix="wfx" NamespacePath="WebFX\Controls" />
-				<Reference TagPrefix="html" NamespacePath="WebFX\HTMLControls" />
+				<Reference TagPrefix="wfx" NamespacePath="Phast\Controls" />
+				<Reference TagPrefix="html" NamespacePath="Phast\HTMLControls" />
 			</References>
 			<StyleSheets>
-				<StyleSheet FileName="$(Configuration:WebFramework.StaticPath)/StyleSheets/Main.css" />
-				<StyleSheet FileName="$(Configuration:WebFramework.StaticPath)/StyleSheets/$(Configuration:Application.ThemeName)/Main.css" />
+				<StyleSheet FileName="$(Configuration:System.StaticPath)/StyleSheets/Main.css" />
+				<StyleSheet FileName="$(Configuration:System.StaticPath)/StyleSheets/$(Configuration:Application.ThemeName)/Main.css" />
 			</StyleSheets>
 			<Content>
 				<html:Heading Level="1"><html:Literal ID="lblMessageTitle" Value="An unexpected error has occurred" /></html:Heading>

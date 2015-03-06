@@ -1,19 +1,21 @@
 <?php
 	namespace FamilySuite\Tenant\MasterPages;
 
-	use WebFX\CancelEventArgs;
-	use WebFX\Parser\WebFXPage;
-	use WebFX\System;
+	use Phast\CancelEventArgs;
+	use Phast\Parser\PhastPage;
+	use Phast\System;
 			
-	class Admin extends WebFXPage
+	class Admin extends PhastPage
 	{
 		public function OnInitializing($e)
 		{
+			/*
 			if ($_SESSION["Authentication.UserName"] == null)
 			{
 				$e->Cancel = true;
 				System::Redirect("~/account/login");
 			}
+			*/
 		}
 		
 	}

@@ -3,8 +3,8 @@
 	<Pages>
 		<Page FileName="guestbook" MasterPageFileName="Blank" ClassName="FamilySuite\Tenant\Modules\Frontend\Pages\GuestbookPage" CssClass="GuestbookPage">
 			<References>
-				<Reference TagPrefix="wfx" NamespacePath="WebFX\Controls" />
-				<Reference TagPrefix="html" NamespacePath="WebFX\HTMLControls" />
+				<Reference TagPrefix="wfx" NamespacePath="Phast\WebControls" />
+				<Reference TagPrefix="html" NamespacePath="Phast\HTMLControls" />
 			</References>
 			<Content>
 				<wfx:Section PlaceholderID="Content">
