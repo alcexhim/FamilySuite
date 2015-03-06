@@ -9,12 +9,6 @@
 	{
 		public function OnInitialized(EventArgs $e)
 		{
-			if (!isset($_SERVER["Authentication.UserName"]))
-			{
-				System::RedirectToLoginPage();
-				return;
-			}
-			
 			foreach ($this->Page->GetControlByID("mnuSidebar")->Items as $item)
 			{
 				$item->Expanded = false;

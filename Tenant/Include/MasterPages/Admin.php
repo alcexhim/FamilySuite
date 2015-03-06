@@ -9,14 +9,12 @@
 	{
 		public function OnInitializing($e)
 		{
-			/*
-			if ($_SESSION["Authentication.UserName"] == null)
+			if (!isset($_SESSION["Authentication.UserName"]))
 			{
+				System::RedirectToLoginPage();
 				$e->Cancel = true;
-				System::Redirect("~/account/login");
+				return;
 			}
-			*/
 		}
-		
 	}
 ?>
