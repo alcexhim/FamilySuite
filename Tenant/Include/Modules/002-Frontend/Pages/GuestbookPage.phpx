@@ -6,6 +6,9 @@
 				<Reference TagPrefix="wfx" NamespacePath="Phast\WebControls" />
 				<Reference TagPrefix="html" NamespacePath="Phast\HTMLControls" />
 			</References>
+			<ServerVariables>
+				<Variable Name="RequireLogin" Value="false" />
+			</ServerVariables>
 			<Content>
 				<wfx:Section PlaceholderID="Content">
 					<div style="height: 960px;">
