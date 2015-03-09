@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Website>
 	<Pages>
-		<Page FileName="account/login" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Modules\Admin\Pages\LoginPage">
+		<Page FileName="account/login" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Modules\Admin\Pages\LoginPage" CssClass="LoginPage">
 			<References>
 				<Reference TagPrefix="wfx" NamespacePath="Phast\WebControls" />
 				<Reference TagPrefix="html" NamespacePath="Phast\HTMLControls" />
 			</References>
 			<Content>
 				<wfx:Section PlaceholderID="Content">
+					<h1>Please log in to view this page</h1>
 					<wfx:FormView Method="Post">
 						<Items>
 							<wfx:FormViewItemText ID="txtUserName" Name="user_UserName" Title="User name" />
 							<wfx:FormViewItemPassword ID="txtPassword" Name="user_Password" Title="Password" />
 						</Items>
 					</wfx:FormView>
+					<hr />
+					<html:Paragraph ID="paraFooter"></html:Paragraph>
 				</wfx:Section>
 			</Content>
 		</Page>
