@@ -9,11 +9,14 @@
 	{
 		public function OnInitializing($e)
 		{
-			if (!isset($_SESSION["Authentication.UserName"]))
+			if ($e->RenderingPage->GetServerVariableValue("RequireLogin") != "false")
 			{
-				System::RedirectToLoginPage();
-				$e->Cancel = true;
-				return;
+				if (!isset($_SESSION["Authentication.UserName"]))
+				{
+					System::RedirectToLoginPage();
+					$e->Cancel = true;
+					return;
+				}
 			}
 		}
 	}
