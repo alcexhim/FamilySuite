@@ -1,0 +1,57 @@
+<Website>
+	<Pages>
+		<Page FileName="events/$(eventID)/respond" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Pages\EventPage">
+			<Content>
+				<wfx:Section PlaceholderID="Content">
+					<form method="POST">
+						<wfx:Wizard ID="wizard" SelectedPageID="page1" Width="75%">
+							<Pages>
+								<wfx:WizardPage ID="page1" Title="Who are you?" Description="Tell us who you are">
+									<wfx:FormView ID="formview1">
+										<Items>
+											<wfx:FormViewItemText ID="txtName" Name="resp_EnteredName" Title="Name" />
+											<wfx:FormViewItemText ID="txtEmailAddress" Name="resp_EnteredEmailAddress" Title="E-mail address" />
+											<wfx:FormViewItemMemo ID="txtMessage" Name="resp_Message" Title="Message (optional)" />
+										</Items>
+									</wfx:FormView>
+								</wfx:WizardPage>
+								<wfx:WizardPage ID="page2" Title="What do you like to eat?" Description="Choose from three delicious meal plans">
+									<p>
+										Please select the type of meal you prefer, so we know how much food to prepare. You may also mention any dietary needs you require special accommodations for.
+									</p>
+									<ul style="list-style-type: none;">
+										<li>
+											<input type="radio" name="guest_MealPlanID" id="optMealPlan1" value="1" /> <label for="optMealPlan1">Chicken</label>
+										</li>
+										<li>
+											<input type="radio" name="guest_MealPlanID" id="optMealPlan2" value="2" /> <label for="optMealPlan2">Beef</label>
+										</li>
+										<li>
+											<input type="radio" name="guest_MealPlanID" id="optMealPlan3" value="3" /> <label for="optMealPlan3">Vegetarian</label>
+										</li>
+									</ul>
+									<label for="txtSpecialDietaryNeeds">Special dietary needs: </label><textarea id="txtSpecialDietaryNeeds" name="guest_SpecialDietaryNeeds" placeholder="Please describe any special dietary needs that require consideration" style="width: 100%;"></textarea>
+								</wfx:WizardPage>
+								<wfx:WizardPage ID="page3" Title="Confirm your registration" Description="Let us know how many guests will be attending">
+									<p>
+										Please indicate the number of guests you will be bringing (including yourself):
+									</p>
+									<wfx:FormView ID="formview2">
+										<Items>
+											<wfx:FormViewItemNumber ID="txtGuestCount" Name="resp_GuestCount" Title="Number of guests" Value="1" />
+										</Items>
+									</wfx:FormView>
+									
+									<div style="margin-top: 32px; text-align: center;">
+										<a href="#" class="Button Success Large">Yes, I will attend!</a>
+										<a href="#" class="Button Danger">Regretfully, I cannot attend</a>
+									</div>
+								</wfx:WizardPage>
+							</Pages>
+						</wfx:Wizard>
+					</form>
+				</wfx:Section>
+			</Content>
+		</Page>
+	</Pages>
+</Website>
