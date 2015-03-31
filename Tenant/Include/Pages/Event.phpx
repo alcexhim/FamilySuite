@@ -1,27 +1,9 @@
 <Website>
 	<Pages>
-		<Page FileName="events/$(eventID)" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Pages\EventDetailPage">
-			<Content>
-				<wfx:Section PlaceholderID="Content">
-					<wfx:TabContainer>
-						<TabPages>
-							<wfx:TabPage ID="page1" Title="Timeline">
-								<wfx:Timeline>
-									<Posts>
-										<wfx:TimelinePost ID="post1" CreationUserName="Michael Becker" CreationUserImageURL="" ViewCount="15">
-											<Content>
-												This is going to be a fun wedding!
-											</Content>
-										</wfx:TimelinePost>
-									</Posts>
-								</wfx:Timeline>
-							</wfx:TabPage>
-						</TabPages>
-					</wfx:TabContainer>
-				</wfx:Section>
-			</Content>
-		</Page>
 		<Page FileName="events/$(eventID)/respond" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Pages\EventPage">
+			<Scripts>
+				<Script FileName="~/Include/Pages/Event.phpx.js" />
+			</Scripts>
 			<Content>
 				<wfx:Section PlaceholderID="Content">
 					<form method="POST" id="form1">
@@ -42,30 +24,41 @@
 									</div>
 								</wfx:WizardPage>
 								<wfx:WizardPage ID="page2" Title="What do you like to eat?" Description="Choose from three delicious meal plans">
-									<p>
-										Please select the type of meal you prefer, so we know how much food to prepare. You may also mention any dietary needs you require special accommodations for.
-									</p>
+									<wfx:Alert CssClass="Info">
+										Please select the type of meal you prefer, so we know how much food to
+										prepare. You may also mention any dietary needs you require special
+										accommodations for.
+									</wfx:Alert>
+									<div class="Alert Danger" id="wizard_step2_alertMealPlanRequired" style="display: none;">
+										<div class="Title">Additional information is required</div>
+										<div class="Content">
+											<ul>
+												<li>Please select a meal plan.</li>
+											</ul>
+										</div>
+									</div>
+									<label>Available meal plans:</label>
 									<ul style="list-style-type: none;">
 										<li>
-											<input type="radio" name="guest_MealPlanID" id="optMealPlan1" value="1" /> <label for="optMealPlan1">Chicken</label>
+											<input type="radio" name="guest_MealPlanID" id="wizard_step2_optMealPlan1" value="1" /> <label for="wizard_step2_optMealPlan1">Chicken</label>
 										</li>
 										<li>
-											<input type="radio" name="guest_MealPlanID" id="optMealPlan2" value="2" /> <label for="optMealPlan2">Beef</label>
+											<input type="radio" name="guest_MealPlanID" id="wizard_step2_optMealPlan2" value="2" /> <label for="wizard_step2_optMealPlan2">Beef</label>
 										</li>
 										<li>
-											<input type="radio" name="guest_MealPlanID" id="optMealPlan3" value="3" /> <label for="optMealPlan3">Vegetarian</label>
+											<input type="radio" name="guest_MealPlanID" id="wizard_step2_optMealPlan3" value="3" /> <label for="wizard_step2_optMealPlan3">Vegetarian</label>
 										</li>
 									</ul>
 									<label for="txtSpecialDietaryNeeds">Special dietary needs: </label><textarea id="txtSpecialDietaryNeeds" name="guest_SpecialDietaryNeeds" placeholder="Please describe any special dietary needs that require consideration" style="width: 100%;"></textarea>
 									<div style="margin-top: 32px; text-align: right;">
 										<a href="#" class="Button" onclick="document.getElementById('wizard').NativeObject.SetSelectedPageIndex(0);">Back</a>
-										<a href="#" class="Button Primary" onclick="document.getElementById('wizard').NativeObject.SetSelectedPageIndex(2);">Next</a>
+										<a href="#" class="Button Primary" id="wizard_step2_cmdNext">Next</a>
 									</div>
 								</wfx:WizardPage>
 								<wfx:WizardPage ID="page3" Title="Confirm your registration" Description="Let us know how many guests will be attending">
-									<p>
+									<wfx:Alert CssClass="Info">
 										Please indicate the number of guests you will be bringing (including yourself):
-									</p>
+									</wfx:Alert>
 									<wfx:FormView ID="formview2">
 										<Items>
 											<wfx:FormViewItemNumber ID="txtGuestCount" Name="resp_GuestCount" Title="Number of guests" Value="1" />
@@ -114,6 +107,27 @@
 							</td>
 						</tr>
 					</table>
+				</wfx:Section>
+			</Content>
+		</Page>
+		<Page FileName="events/$(eventID)" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Pages\EventDetailPage">
+			<Content>
+				<wfx:Section PlaceholderID="Content">
+					<wfx:TabContainer>
+						<TabPages>
+							<wfx:TabPage ID="page1" Title="Timeline">
+								<wfx:Timeline>
+									<Posts>
+										<wfx:TimelinePost ID="post1" CreationUserName="Michael Becker" CreationUserImageURL="" ViewCount="15">
+											<Content>
+												This is going to be a fun wedding!
+											</Content>
+										</wfx:TimelinePost>
+									</Posts>
+								</wfx:Timeline>
+							</wfx:TabPage>
+						</TabPages>
+					</wfx:TabContainer>
 				</wfx:Section>
 			</Content>
 		</Page>
