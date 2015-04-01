@@ -6,6 +6,28 @@ function HasUserSelectedMealPlan()
 window.addEventListener("load", function()
 {
 	// bind the events
+	var cmdAddExtraGuest = document.getElementById("cmdAddExtraGuest");
+	cmdAddExtraGuest.addEventListener("click", function(e)
+	{
+		wndGuestDetails.ShowDialog();
+		
+		e.preventDefault();
+		e.stopPropagation();
+		return false;
+	});
+	
+	var cmdGuestDetailsCancel = document.getElementById("cmdGuestDetailsCancel");
+	var cmdGuestDetailsSaveChanges = document.getElementById("cmdGuestDetailsSaveChanges");
+	cmdGuestDetailsCancel.addEventListener("click", function(e)
+	{
+		wndGuestDetails.Hide();
+	});
+	cmdGuestDetailsSaveChanges.addEventListener("click", function(e)
+	{
+		wndGuestDetails.SetLoading(true);
+		wndGuestDetails.SetLoadingText("Saving your changes, please wait");
+	});
+	
 	var wizard_step2_optMealPlan1 = document.getElementById("wizard_step2_optMealPlan1");
 	var wizard_step2_optMealPlan2 = document.getElementById("wizard_step2_optMealPlan2");
 	var wizard_step2_optMealPlan3 = document.getElementById("wizard_step2_optMealPlan3");

@@ -1,5 +1,102 @@
 <Website>
 	<Pages>
+	
+		<Page FileName="events/$(eventID)/respond2" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Pages\EventPage">
+			<Scripts>
+				<Script FileName="~/Include/Pages/Event.phpx.js" />
+			</Scripts>
+			<Content>
+				<wfx:Section PlaceholderID="Content">
+					<wfx:Window ID="wndGuestDetails" Title="Guest Details" Visible="false" Width="600px">
+						<ContentControls>
+							<wfx:FormView ID="formview1" Width="100%">
+								<Items>
+									<wfx:FormViewItemHeader Title="Personal information" />
+									<wfx:FormViewItemText ID="txtName" Name="resp_EnteredName" Title="Name" />
+									<wfx:FormViewItemText ID="txtEmailAddress" Name="resp_EnteredEmailAddress" Title="E-mail address" />
+									<wfx:FormViewItemMemo ID="txtMessage" Name="resp_Message" Title="Message (optional)" />
+									
+									<wfx:FormViewItemHeader Title="Meal plan" />
+									<wfx:FormViewItemChoice ID="cboMealPlan" Name="resp_MealPlanID" Title="Meal plan" />
+									<wfx:FormViewItemMemo ID="txtMealPlanComments" Name="resp_MealPlanComments" Title="Special dietary needs (optional)" />
+								</Items>
+							</wfx:FormView>
+						</ContentControls>
+						<FooterControls>
+							<wfx:Button ID="cmdGuestDetailsCancel" TargetScript="wndGuestDetails.Hide();" Text="Cancel" />
+							<wfx:Button ID="cmdGuestDetailsSaveChanges" CssClass="Primary" Text="Save Changes" />
+						</FooterControls>
+					</wfx:Window>
+					<form method="POST" id="form1">
+						<div style="width: 80%; margin-right: auto; margin-left: auto;">
+							<h1>Lily and Michael's Excellent Adventurous Wedding</h1>
+							
+							<h2>Please confirm your response by May 1st</h2>
+							<p>
+								We'd love to see you there if you can make it. Though if you can't, we understand.
+							</p>
+							<ul style="list-style-type: none;">
+								<li>
+									<input type="radio" id="optStatusAttending" name="resp_Status" value="1" checked="checked" /> <label for="optStatusAttending">Yes, I will attend!</label>
+								</li>
+								<li>
+									<input type="radio" id="optStatusDeclining" name="resp_Status" value="0" /> <label for="optStatusDeclining">No, I will not attend</label>
+								</li>
+							</ul>
+							
+							<div id="responseAttending">
+								<h2>Guests in your party</h2>
+								<p>
+									Don't forget to specify meal plans for each of your additional guests as well as yourself. This will let us know how many of each meal to provide.
+								</p>
+								<wfx:ListView ID="lvGuestList" EnableAddRemoveRows="true">
+									<Columns>
+										<wfx:ListViewColumn ID="lvcFullName" Title="Full name" />
+										<wfx:ListViewColumn ID="lvcEmailAddress" Title="E-mail address" />
+										<wfx:ListViewColumn ID="lvcMessage" Title="Message" />
+										<wfx:ListViewColumn ID="lvcMealPlanID" Title="Meal plan" />
+										<wfx:ListViewColumn ID="lvcSpecialDietaryNeeds" Title="Special dietary needs" />
+									</Columns>
+									<Items>
+										<wfx:ListViewItem>
+											<Columns>
+												<wfx:ListViewItemColumn ID="lvcFullName" Content="Michael Becker" />
+												<wfx:ListViewItemColumn ID="lvcEmailAddress" Content="alcexhim@gmail.com" />
+												<wfx:ListViewItemColumn ID="lvcMessage" Content="I'm the groom!" />
+												<wfx:ListViewItemColumn ID="lvcMealPlanID" Content="Beef" />
+												<wfx:ListViewItemColumn ID="lvcSpecialDietaryNeeds" Content="" />
+											</Columns>
+										</wfx:ListViewItem>
+										<wfx:ListViewItem>
+											<Columns>
+												<wfx:ListViewItemColumn ID="lvcFullName" Content="Lily Azcona" />
+												<wfx:ListViewItemColumn ID="lvcEmailAddress" Content="lily.azcona@gmail.com" />
+												<wfx:ListViewItemColumn ID="lvcMessage" Content="I'm the bride!" />
+												<wfx:ListViewItemColumn ID="lvcMealPlanID" Content="Chicken" />
+												<wfx:ListViewItemColumn ID="lvcSpecialDietaryNeeds" Content="" />
+											</Columns>
+										</wfx:ListViewItem>
+									</Items>
+								</wfx:ListView>
+								<div style="text-align: right; padding: 32px;">
+									<wfx:Button ID="cmdAddExtraGuest" CssClass="Primary" Text="Add another guest" IconName="user-plus" />
+								</div>
+								<hr />
+								<div style="text-align: right; padding: 32px;">
+									<a class="Button" href="#">Cancel</a>
+									<a class="Button Primary" href="#">Confirm</a>
+								</div>
+							</div>
+						</div>
+					</form>
+				</wfx:Section>
+			</Content>
+		</Page>
+		
+		
+		
+		
+		
 		<Page FileName="events/$(eventID)/respond" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Pages\EventPage">
 			<Scripts>
 				<Script FileName="~/Include/Pages/Event.phpx.js" />
