@@ -22,7 +22,7 @@
 				$formview1->GetItemByID("txtEmailAddress")->Value = $_POST["resp_EnteredEmailAddress"];
 				$formview1->GetItemByID("txtMessage")->Value = $_POST["resp_Message"];
 				
-				if ($_POST["resp_Status"] != "-1")
+				if (isset($_POST["resp_Status"]))
 				{
 					// we're going to actually submit data now
 					$pdo = DataSystem::GetPDO();

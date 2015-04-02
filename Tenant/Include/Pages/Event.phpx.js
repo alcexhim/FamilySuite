@@ -21,11 +21,21 @@ window.addEventListener("load", function()
 	cmdGuestDetailsCancel.addEventListener("click", function(e)
 	{
 		wndGuestDetails.Hide();
+		
+		e.preventDefault();
+		e.stopPropagation();
+		return false;
 	});
 	cmdGuestDetailsSaveChanges.addEventListener("click", function(e)
 	{
 		wndGuestDetails.SetLoading(true);
 		wndGuestDetails.SetLoadingText("Saving your changes, please wait");
+		
+		alert("You chose " + document.getElementById("cboMealPlan").NativeObject.GetSelectedItems()[0].Title + "!");
+		
+		e.preventDefault();
+		e.stopPropagation();
+		return false;
 	});
 	
 	var wizard_step2_optMealPlan1 = document.getElementById("wizard_step2_optMealPlan1");

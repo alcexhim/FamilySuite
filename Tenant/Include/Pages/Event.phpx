@@ -17,7 +17,14 @@
 									<wfx:FormViewItemMemo ID="txtMessage" Name="resp_Message" Title="Message (optional)" />
 									
 									<wfx:FormViewItemHeader Title="Meal plan" />
-									<wfx:FormViewItemChoice ID="cboMealPlan" Name="resp_MealPlanID" Title="Meal plan" />
+									<wfx:FormViewItemChoice ID="cboMealPlan" Name="resp_MealPlanID" Title="Meal plan" RequireSelectionFromChoices="true">
+										<Items>
+											<wfx:FormViewItemChoiceValue Title="Chicken" Value="1" />
+											<wfx:FormViewItemChoiceValue Title="Beef" Value="2" />
+											<wfx:FormViewItemChoiceValue Title="Vegetarian" Value="3" />
+											<wfx:FormViewItemChoiceValue Title="Other" Value="4" />
+										</Items>
+									</wfx:FormViewItemChoice>
 									<wfx:FormViewItemMemo ID="txtMealPlanComments" Name="resp_MealPlanComments" Title="Special dietary needs (optional)" />
 								</Items>
 							</wfx:FormView>
