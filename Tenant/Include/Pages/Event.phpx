@@ -217,7 +217,7 @@
 		<Page FileName="events/$(eventID)" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Pages\EventDetailPage">
 			<Content>
 				<wfx:Section PlaceholderID="Content">
-					<wfx:TabContainer>
+					<wfx:TabContainer SelectedTabID="page1">
 						<TabPages>
 							<wfx:TabPage ID="page1" Title="Timeline">
 								<wfx:Timeline>
@@ -229,6 +229,40 @@
 										</wfx:TimelinePost>
 									</Posts>
 								</wfx:Timeline>
+							</wfx:TabPage>
+							<wfx:TabPage ID="pageResponses" Title="Responses">
+								<div class="Tile Primary">
+									<div class="Header">
+										Invited
+									</div>
+									<div class="Content">
+										10
+									</div>
+								</div>
+								<div class="Tile Success">
+									<div class="Header">
+										Attending
+									</div>
+									<div class="Content">
+										5
+									</div>
+								</div>
+								<div class="Tile Danger">
+									<div class="Header">
+										Declined
+									</div>
+									<div class="Content">
+										2
+									</div>
+								</div>
+								<div class="Tile">
+									<div class="Header">
+										Remaining
+									</div>
+									<div class="Content">
+										3
+									</div>
+								</div>
 							</wfx:TabPage>
 						</TabPages>
 					</wfx:TabContainer>
