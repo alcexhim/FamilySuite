@@ -7,6 +7,13 @@
 	use Phast\Data\DataSystem;
 	use Phast\System;
 	
+	use Phast\WebControls\ListView;
+	use Phast\WebControls\ListViewColum;
+	use Phast\WebControls\ListViewItem;
+	use Phast\WebControls\ListViewItemColumn;
+	
+	use PDO;
+			
 	class EventPage extends PhastPage
 	{
 		public function OnInitializing(CancelEventArgs $e)
@@ -57,6 +64,36 @@
 					$page->GetControlByID("wizard")->SelectedPageID = "page2";
 				}
 			}
+		}
+	}
+	class EventDetailPage extends PhastPage
+	{
+		public function OnInitializing(CancelEventArgs $e)
+		{
+			$page = $e->RenderingPage;
+			$tabPage = $page->GetControlByID("tbsTabs")->GetTabByID("pageResponses");
+			$lvInvitees = $tabPage->GetControlByID("lvInvitees");
+
+			// we're going to actually submit data now
+			$pdo = DataSystem::GetPDO();
+			$query = "SELECT * FROM Responses";
+			$statement = $pdo->prepare($query);
+			$statement->execute();
+			$count = $statement->rowCount();
+			
+			$items = array();
+			
+			for ($i = 0; $i < $count; $i++)
+			{
+				$values = $statement->fetch(PDO::FETCH_ASSOC);
+				$items[] = new ListViewItem(array
+				(
+					new ListViewItemColumn("lvcGuest", $values["resp_EnteredName"]),
+					new ListViewItemColumn("lvcAttending", $values["resp_Status"] == 1 ? "Yes" : "No")
+				));
+			}
+			
+			$lvInvitees->Items = $items;
 		}
 	}
 ?>
