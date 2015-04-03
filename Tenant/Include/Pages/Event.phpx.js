@@ -28,6 +28,14 @@ window.addEventListener("load", function()
 	});
 	cmdGuestDetailsSaveChanges.addEventListener("click", function(e)
 	{
+		if (document.getElementById("cboMealPlan").NativeObject.GetSelectedItems().length == 0)
+		{
+			alert("Please choose a meal plan");
+			e.preventDefault();
+			e.stopPropagation();
+			return false;
+		}
+		
 		wndGuestDetails.SetLoading(true);
 		wndGuestDetails.SetLoadingText("Saving your changes, please wait");
 		
