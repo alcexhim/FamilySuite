@@ -231,16 +231,35 @@
 								</wfx:Timeline>
 							</wfx:TabPage>
 							<wfx:TabPage ID="pageResponses" Title="Responses">
+								<!-- 
+									This is what we should be able to do in ObjectFX...
+									
+								<ofx:DataGrid ID="dgInvitees">
+									<Columns>
+										<ofx:DataGridColumn ObjectName="GuestResponse" FieldName="FullName" Title="Guest" />
+										<ofx:DataGridColumn ObjectName="GuestResponse" FieldName="Response" Title="Response" />
+										<ofx:DataGridColumn ObjectName="GuestResponse" FieldName="Type" Title="Type" />
+									</Columns>
+								</ofx:DataGrid>
+								-->
 								<wfx:ListView ID="lvInvitees">
 									<Columns>
-										<wfx:ListViewColumn Name="lvcGuest" Title="Guest" />
+										<wfx:ListViewColumn Name="lvcGuest" Title="Invitee" />
 										<wfx:ListViewColumn Name="lvcAttending" Title="Attending?" />
+										<wfx:ListViewColumn Name="lvcGuestCount" Title="Number of guests" />
+										<wfx:ListViewColumn Name="lvcMealPlan" Title="Meal plan" />
+										<wfx:ListViewColumn Name="lvcGuestType" Title="Type" />
+										<wfx:ListViewColumn Name="lvcInviteSource" Title="Invite Source" />
 									</Columns>
 									<Items>
 										<wfx:ListViewItem>
 											<Columns>
 												<wfx:ListViewItemColumn Name="lvcGuest" Content="Mickey Mouse" />
-												<wfx:ListViewItemColumn Name="lvcAttending" Content="No" />
+												<wfx:ListViewItemColumn Name="lvcAttending" Content="Yes" />
+												<wfx:ListViewItemColumn Name="lvcGuestCount" Content="2" />
+												<wfx:ListViewItemColumn Name="lvcMealPlan" Content="Vegetarian" />
+												<wfx:ListViewItemColumn Name="lvcGuestType" Content="Host" />
+												<wfx:ListViewItemColumn Name="lvcInviteSource" Content="Online" />
 											</Columns>
 										</wfx:ListViewItem>
 									</Items>

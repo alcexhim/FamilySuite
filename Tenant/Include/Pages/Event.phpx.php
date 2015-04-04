@@ -76,7 +76,7 @@
 
 			// we're going to actually submit data now
 			$pdo = DataSystem::GetPDO();
-			$query = "SELECT * FROM Responses";
+			$query = "SELECT *, fs_EventGuestTypes.guesttype_Title, fs_EventInviteSources.invitesource_Title, MealPlans.Title AS mealplan_Title FROM Responses, fs_EventGuestTypes, fs_EventInviteSources, MealPlans WHERE Responses.resp_GuestTypeID = fs_EventGuestTypes.guesttype_ID AND Responses.resp_InviteSourceID = fs_EventInviteSources.invitesource_ID AND Responses.resp_MealOptionID = MealPlans.ID";
 			$statement = $pdo->prepare($query);
 			$statement->execute();
 			$count = $statement->rowCount();
@@ -89,7 +89,11 @@
 				$items[] = new ListViewItem(array
 				(
 					new ListViewItemColumn("lvcGuest", $values["resp_EnteredName"]),
-					new ListViewItemColumn("lvcAttending", $values["resp_Status"] == 1 ? "Yes" : "No")
+					new ListViewItemColumn("lvcAttending", $values["resp_Status"] == 1 ? "Yes" : "No"),
+					new ListViewItemColumn("lvcGuestCount", $values["resp_GuestCount"]),
+					new ListViewItemColumn("lvcMealPlan", $values["mealplan_Title"] . ($values["resp_MealPlanComments"] != "" ? ("<br /><em>" . $values["resp_MealPlanComments"] . "</em>") : "")),
+					new ListViewItemColumn("lvcGuestType", $values["guesttype_Title"]),
+					new ListViewItemColumn("lvcInviteSource", $values["invitesource_Title"])
 				));
 			}
 			
