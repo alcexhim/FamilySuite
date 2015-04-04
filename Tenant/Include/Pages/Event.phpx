@@ -112,7 +112,7 @@
 				<wfx:Section PlaceholderID="Content">
 					<form method="POST" id="form1">
 						<input type="hidden" name="resp_Status" id="resp_Status" value="-1" />
-						<wfx:Wizard ID="wizard" SelectedPageID="page1" Width="75%">
+						<wfx:Wizard ID="wizard" SelectedPageID="page1">
 							<Pages>
 								<wfx:WizardPage ID="page1" Title="Who are you?" Description="Tell us who you are">
 									<wfx:FormView ID="formview1">
@@ -183,41 +183,37 @@
 		<Page FileName="events/$(eventID)/thankyou1" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Pages\EventThankYouPage">
 			<Content>
 				<wfx:Section PlaceholderID="Content">
-					<table>
-						<tr>
-							<td>
-								<html:Image ImageUrl="~/Resources/AzBec/Images/HappyMickey.png" Height="300px" />
-							</td>
-							<td style="vertical-align: top; padding: 64px;">
-								<h1>Thank you!</h1>
-								<h3>We look forward to seeing you at the wedding!</h3>
-							</td>
-						</tr>
-					</table>
+					<div class="ImageAndMessage">
+						<div class="Image">
+							<html:Image ImageUrl="~/Resources/AzBec/Images/HappyMickey.png" Height="300px" />
+						</div>
+						<div class="Message">
+							<h1>Thank you!</h1>
+							<h3>We look forward to seeing you at the wedding!</h3>
+						</div>
+					</div>
 				</wfx:Section>
 			</Content>
 		</Page>
 		<Page FileName="events/$(eventID)/thankyou2" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Pages\EventThankYouPage">
 			<Content>
 				<wfx:Section PlaceholderID="Content">
-					<table>
-						<tr>
-							<td style="vertical-align: top; padding: 64px;">
-								<h1>That's too bad.</h1>
-								<h3>Sorry you couldn't make it to our wedding.</h3>
-							</td>
-							<td>
-								<html:Image ImageUrl="~/Resources/AzBec/Images/SadMickey.png" Height="300px" />
-							</td>
-						</tr>
-					</table>
+					<div class="ImageAndMessage">
+						<div class="Image">
+							<html:Image ImageUrl="~/Resources/AzBec/Images/SadMickey.png" Height="300px" />
+						</div>
+						<div class="Message">
+							<h1>That's too bad.</h1>
+							<h3>Sorry you couldn't make it to our wedding.</h3>
+						</div>
+					</div>
 				</wfx:Section>
 			</Content>
 		</Page>
 		<Page FileName="events/$(eventID)" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Pages\EventDetailPage">
 			<Content>
 				<wfx:Section PlaceholderID="Content">
-					<wfx:TabContainer ID="tbsTabs" SelectedTabID="page1">
+					<wfx:TabContainer>
 						<TabPages>
 							<wfx:TabPage ID="page1" Title="Timeline">
 								<wfx:Timeline>
