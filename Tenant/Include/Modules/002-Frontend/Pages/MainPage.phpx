@@ -8,12 +8,44 @@
 			</References>
 			<Content>
 				<wfx:Section PlaceholderID="Content">
+					<wfx:Window ID="wndThankYou" Title="Thank you!">
+						<ContentControls>
+							<p>We appreciate you taking the time to sign our guestbook.</p>
+						</ContentControls>
+						<FooterControls>
+							<a class="Button Primary" href="#" onclick="wndThankYou.Hide(); wndGuestbook.Hide();">You're welcome!</a>
+						</FooterControls>
+					</wfx:Window>
+					<wfx:Window ID="wndGuestbook" Title="Sign Guestbook">
+						<ContentControls>
+							<p>
+								Please tell us who you are and let us know if you'd like to receive updates.
+							</p>
+							<wfx:FormView>
+								<Items>
+									<wfx:FormViewItemText ID="txtFullName" Name="guest_FullName" Title="Full name" />
+									<wfx:FormViewItemText ID="txtEmailAddress" Name="guest_EmailAddress" Title="E-mail address" />
+									<wfx:FormViewItemMemo ID="txtContent" Name="guest_Content" Title="Message" />
+									<wfx:FormViewItemChoice ID="cboReceiveUpdates" Name="guest_UpdateFrequency" Title="Would you like to receive updates?" ClearOnFocus="true">
+										<Items>
+											<wfx:FormViewItemChoiceValue Title="Yes, please!" Value="1" />
+											<wfx:FormViewItemChoiceValue Title="No, thank you" Value="0" />
+										</Items>
+									</wfx:FormViewItemChoice>
+								</Items>
+							</wfx:FormView>
+						</ContentControls>
+						<FooterControls>
+							<a href="#" class="Button" onclick="wndGuestbook.Hide();">Close</a>
+							<a class="Button Primary" href="#" onclick="wndThankYou.ShowDialog();">Sign</a>
+						</FooterControls>
+					</wfx:Window>
 					<div style="height: 960px;">
 						<h1><html:Literal Value="$(Configuration:Application.Title)" /></h1>
 						<h3>Welcome to our family Web site</h3>
 						
 						<p>Family members, <html:Anchor TargetURL="~/dashboard">go here</html:Anchor> to access your dashboard.</p>
-						<p>Guests, please take some time to <html:Anchor TargetURL="~/guestbook">sign the guestbook</html:Anchor>!</p>
+						<p>Guests, please take some time to <html:Anchor TargetScript="wndGuestbook.ShowDialog(); return false;" TargetURL="~/guestbook">sign the guestbook</html:Anchor>!</p>
 					</div>
 				</wfx:Section>
 			</Content>
