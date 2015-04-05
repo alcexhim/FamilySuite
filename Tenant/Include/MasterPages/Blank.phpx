@@ -7,11 +7,13 @@
 				<Reference TagPrefix="html" NamespacePath="Phast\HTMLControls" />
 			</References>
 			<StyleSheets>
-				<StyleSheet FileName="$(Configuration:System.StaticPath)/StyleSheets/Main.css" />
 				<StyleSheet FileName="$(Configuration:System.StaticPath)/StyleSheets/$(Configuration:Application.ThemeName)/Main.css" />
 			</StyleSheets>
 			<Content>
 				<html:Navigation CssClass="Top">
+					<html:Anchor CssClass="ApplicationMenu">
+						<i class="fa fa-bars"></i>
+					</html:Anchor>
 					<div class="Logo">
 						<html:Anchor TargetURL="~/"><span class="Primary"><html:Literal Value="$(Configuration:Application.Logo.Primary)" /></span><span class="Secondary"><html:Literal Value="$(Configuration:Application.Logo.Secondary)" /></span></html:Anchor>
 					</div>
