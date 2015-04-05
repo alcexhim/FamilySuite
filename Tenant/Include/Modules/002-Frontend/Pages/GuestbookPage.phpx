@@ -13,6 +13,9 @@
 				<wfx:Section PlaceholderID="Content">
 					<div style="height: 960px;">
 						<html:Form Method="Post">
+							<wfx:Alert CssClass="Info" Title="Thank you">
+								We appreciate you taking the time to sign the guestbook!
+							</wfx:Alert>
 							<wfx:FormView>
 								<Items>
 									<wfx:FormViewItemText ID="txtFullName" Name="guest_FullName" Title="Full name" />
