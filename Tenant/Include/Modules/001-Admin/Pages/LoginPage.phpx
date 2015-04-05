@@ -11,12 +11,17 @@
 					<wfx:Alert CssClass="Warning" Title="Please log in to view this page">
 						Access is restricted to Azcona-Becker family members.
 					</wfx:Alert>
-					<wfx:FormView Method="Post">
-						<Items>
-							<wfx:FormViewItemText ID="txtUserName" Name="user_UserName" Title="User name" />
-							<wfx:FormViewItemPassword ID="txtPassword" Name="user_Password" Title="Password" />
-						</Items>
-					</wfx:FormView>
+					<html:Form Method="Post">
+						<wfx:FormView>
+							<Items>
+								<wfx:FormViewItemText ID="txtUserName" Name="user_UserName" Title="User name" />
+								<wfx:FormViewItemPassword ID="txtPassword" Name="user_Password" Title="Password" />
+							</Items>
+						</wfx:FormView>
+						<div style="text-align: right;">
+							<input type="submit" class="Button Primary" value="Log In" />
+						</div>
+					</html:Form>
 					<hr />
 					<html:Paragraph ID="paraFooter"></html:Paragraph>
 				</wfx:Section>
