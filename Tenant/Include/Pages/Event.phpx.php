@@ -92,6 +92,7 @@
 					new ListViewItemColumn("lvcAttending", $values["resp_Status"] == 1 ? "Yes" : "No"),
 					new ListViewItemColumn("lvcGuestCount", $values["resp_GuestCount"]),
 					new ListViewItemColumn("lvcMealPlan", $values["mealplan_Title"] . ($values["resp_MealPlanComments"] != "" ? ("<br /><em>" . $values["resp_MealPlanComments"] . "</em>") : "")),
+					new ListViewItemColumn("lvcMessage", $values["resp_Message"]),
 					new ListViewItemColumn("lvcGuestType", $values["guesttype_Title"]),
 					new ListViewItemColumn("lvcInviteSource", $values["invitesource_Title"])
 				));
