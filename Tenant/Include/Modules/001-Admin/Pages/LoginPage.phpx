@@ -19,6 +19,7 @@
 							</Items>
 						</wfx:FormView>
 						<div style="text-align: right;">
+							<html:Anchor CssClass="Button" TargetURL="~/" TargetScript="history.back(); return false;">Cancel</html:Anchor>
 							<input type="submit" class="Button Primary" value="Log In" />
 						</div>
 					</html:Form>
