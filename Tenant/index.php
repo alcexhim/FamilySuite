@@ -25,7 +25,6 @@
 	// Now that we have defined the root path, load the Phast content (which also
 	// include_once's the modules and other Phast-specific stuff)
 	require_once("Phast/System.inc.php");
-	require_once("UUID.inc.php");
 	
 	// Bring in the Phast\System and Phast\IncludeFile classes so we can simply refer
 	// to them (in this file only) as "System" and "IncludeFile", respectively, from
