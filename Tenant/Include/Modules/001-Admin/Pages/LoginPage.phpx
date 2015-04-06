@@ -18,7 +18,7 @@
 								<wfx:FormViewItemPassword ID="txtPassword" Name="user_Password" Title="Password" />
 							</Items>
 						</wfx:FormView>
-						<div style="text-align: right;">
+						<div class="PageFooter">
 							<html:Anchor CssClass="Button" TargetURL="~/" TargetScript="history.back(); return false;">Cancel</html:Anchor>
 							<input type="submit" class="Button Primary" value="Log In" />
 						</div>
