@@ -7,44 +7,54 @@ window.addEventListener("load", function()
 {
 	// bind the events
 	var cmdAddExtraGuest = document.getElementById("cmdAddExtraGuest");
-	cmdAddExtraGuest.addEventListener("click", function(e)
+	if (cmdAddExtraGuest != null)
 	{
-		wndGuestDetails.ShowDialog();
-		
-		e.preventDefault();
-		e.stopPropagation();
-		return false;
-	});
-	
-	var cmdGuestDetailsCancel = document.getElementById("cmdGuestDetailsCancel");
-	var cmdGuestDetailsSaveChanges = document.getElementById("cmdGuestDetailsSaveChanges");
-	cmdGuestDetailsCancel.addEventListener("click", function(e)
-	{
-		wndGuestDetails.Hide();
-		
-		e.preventDefault();
-		e.stopPropagation();
-		return false;
-	});
-	cmdGuestDetailsSaveChanges.addEventListener("click", function(e)
-	{
-		if (document.getElementById("cboMealPlan").NativeObject.GetSelectedItems().length == 0)
+		cmdAddExtraGuest.addEventListener("click", function(e)
 		{
-			alert("Please choose a meal plan");
+			wndGuestDetails.ShowDialog();
+			
 			e.preventDefault();
 			e.stopPropagation();
 			return false;
-		}
-		
-		wndGuestDetails.SetLoading(true);
-		wndGuestDetails.SetLoadingText("Saving your changes, please wait");
-		
-		alert("You chose " + document.getElementById("cboMealPlan").NativeObject.GetSelectedItems()[0].Title + "!");
-		
-		e.preventDefault();
-		e.stopPropagation();
-		return false;
-	});
+		});
+	}
+	
+	var cmdGuestDetailsCancel = document.getElementById("cmdGuestDetailsCancel");
+	var cmdGuestDetailsSaveChanges = document.getElementById("cmdGuestDetailsSaveChanges");
+	
+	if (cmdGuestDetailsCancel != null)
+	{
+		cmdGuestDetailsCancel.addEventListener("click", function(e)
+		{
+			wndGuestDetails.Hide();
+			
+			e.preventDefault();
+			e.stopPropagation();
+			return false;
+		});
+	}
+	if (cmdGuestDetailsSaveChanges != null)
+	{
+		cmdGuestDetailsSaveChanges.addEventListener("click", function(e)
+		{
+			if (document.getElementById("cboMealPlan").NativeObject.GetSelectedItems().length == 0)
+			{
+				alert("Please choose a meal plan");
+				e.preventDefault();
+				e.stopPropagation();
+				return false;
+			}
+			
+			wndGuestDetails.SetLoading(true);
+			wndGuestDetails.SetLoadingText("Saving your changes, please wait");
+			
+			alert("You chose " + document.getElementById("cboMealPlan").NativeObject.GetSelectedItems()[0].Title + "!");
+			
+			e.preventDefault();
+			e.stopPropagation();
+			return false;
+		});
+	}
 	
 	var wizard_step2_optMealPlan1 = document.getElementById("wizard_step2_optMealPlan1");
 	var wizard_step2_optMealPlan2 = document.getElementById("wizard_step2_optMealPlan2");
