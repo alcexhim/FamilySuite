@@ -238,26 +238,26 @@
 									</Columns>
 								</ofx:DataGrid>
 								-->
-								<wfx:ListView ID="lvInvitees">
+								<wfx:ListView ID="lvInvitees" EnableMultipleSelection="true">
 									<Columns>
-										<wfx:ListViewColumn Name="lvcGuest" Title="Invitee" />
-										<wfx:ListViewColumn Name="lvcAttending" Title="Attending?" />
-										<wfx:ListViewColumn Name="lvcGuestCount" Title="Guests" />
-										<wfx:ListViewColumn Name="lvcMealPlan" Title="Meal plan" />
-										<wfx:ListViewColumn Name="lvcMessage" Title="Message" />
-										<wfx:ListViewColumn Name="lvcGuestType" Title="Type" />
-										<wfx:ListViewColumn Name="lvcInviteSource" Title="Invite Source" />
+										<wfx:ListViewColumn ID="lvcGuest" Title="Invitee" />
+										<wfx:ListViewColumn ID="lvcAttending" Title="Attending?" />
+										<wfx:ListViewColumn ID="lvcGuestCount" Title="Guests" />
+										<wfx:ListViewColumn ID="lvcMealPlan" Title="Meal plan" />
+										<wfx:ListViewColumn ID="lvcMessage" Title="Message" />
+										<wfx:ListViewColumn ID="lvcGuestType" Title="Type" />
+										<wfx:ListViewColumn ID="lvcInviteSource" Title="Invite Source" />
 									</Columns>
 									<Items>
 										<wfx:ListViewItem>
 											<Columns>
-												<wfx:ListViewItemColumn Name="lvcGuest" Content="Mickey Mouse" />
-												<wfx:ListViewItemColumn Name="lvcAttending" Content="Yes" />
-												<wfx:ListViewItemColumn Name="lvcGuestCount" Content="2" />
-												<wfx:ListViewItemColumn Name="lvcMealPlan" Content="Vegetarian" />
-												<wfx:ListViewItemColumn Name="lvcMessage" Content="" />
-												<wfx:ListViewItemColumn Name="lvcGuestType" Content="Host" />
-												<wfx:ListViewItemColumn Name="lvcInviteSource" Content="Online" />
+												<wfx:ListViewItemColumn ID="lvcGuest" Content="Mickey Mouse" />
+												<wfx:ListViewItemColumn ID="lvcAttending" Content="Yes" />
+												<wfx:ListViewItemColumn ID="lvcGuestCount" Content="2" />
+												<wfx:ListViewItemColumn ID="lvcMealPlan" Content="Vegetarian" />
+												<wfx:ListViewItemColumn ID="lvcMessage" Content="" />
+												<wfx:ListViewItemColumn ID="lvcGuestType" Content="Host" />
+												<wfx:ListViewItemColumn ID="lvcInviteSource" Content="Online" />
 											</Columns>
 										</wfx:ListViewItem>
 									</Items>
