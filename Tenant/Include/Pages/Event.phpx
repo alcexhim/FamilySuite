@@ -227,6 +227,11 @@
 								</wfx:Timeline>
 							</wfx:TabPage>
 							<wfx:TabPage ID="pageResponses" Title="Responses">
+								<div style="text-align: center;">
+									<wfx:Meter ID="mtrChicken" MinimumValue="0" MaximumValue="100" CurrentValue="30" Title="Chicken" ForegroundColor="#00ACAC" BackgroundColor="#D9E0E7" />
+									<wfx:Meter ID="mtrBeef" MinimumValue="0" MaximumValue="100" CurrentValue="50" Title="Beef" ForegroundColor="#348FE2" BackgroundColor="#D9E0E7" />
+									<wfx:Meter ID="mtrVegetarian" MinimumValue="0" MaximumValue="100" CurrentValue="20" Title="Vegetarian" ForegroundColor="#727CB6" BackgroundColor="#D9E0E7" />
+								</div>
 								<!-- 
 									This is what we should be able to do in ObjectFX...
 									

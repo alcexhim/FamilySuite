@@ -73,7 +73,7 @@
 			$page = $e->RenderingPage;
 			$tabPage = $page->GetControlByID("tbsTabs")->GetTabByID("pageResponses");
 			$lvInvitees = $tabPage->GetControlByID("lvInvitees");
-
+			
 			// we're going to actually submit data now
 			$pdo = DataSystem::GetPDO();
 			$query = "SELECT *, fs_EventGuestTypes.guesttype_Title, fs_EventInviteSources.invitesource_Title, MealPlans.Title AS mealplan_Title FROM Responses, fs_EventGuestTypes, fs_EventInviteSources, MealPlans WHERE Responses.resp_GuestTypeID = fs_EventGuestTypes.guesttype_ID AND Responses.resp_InviteSourceID = fs_EventInviteSources.invitesource_ID AND Responses.resp_MealOptionID = MealPlans.ID";
@@ -82,6 +82,10 @@
 			$count = $statement->rowCount();
 			
 			$items = array();
+			
+			$countChicken = 0;
+			$countBeef = 0;
+			$countVegetarian = 0;
 			
 			for ($i = 0; $i < $count; $i++)
 			{
@@ -96,9 +100,43 @@
 					new ListViewItemColumn("lvcGuestType", $values["guesttype_Title"]),
 					new ListViewItemColumn("lvcInviteSource", $values["invitesource_Title"])
 				));
+				
+				switch ($values["resp_MealOptionID"])
+				{
+					case 1:
+					{
+						$countChicken++;
+						break;
+					}
+					case 2:
+					{
+						$countBeef++;
+						break;
+					}
+					case 3:
+					{
+						$countVegetarian++;
+						break;
+					}
+				}
 			}
-			
+
 			$lvInvitees->Items = $items;
+			
+			$countTotal = ($countChicken + $countBeef + $countVegetarian);
+			
+			$mtrChicken = $tabPage->GetControlByID("mtrChicken");
+			$mtrBeef = $tabPage->GetControlByID("mtrBeef");
+			$mtrVegetarian = $tabPage->GetControlByID("mtrVegetarian");
+			
+			$mtrChicken->MaximumValue = $countTotal;
+			$mtrChicken->CurrentValue = $countChicken;
+			
+			$mtrBeef->MaximumValue = $countTotal;
+			$mtrBeef->CurrentValue = $countBeef;
+			
+			$mtrVegetarian->MaximumValue = $countTotal;
+			$mtrVegetarian->CurrentValue = $countVegetarian;
 		}
 	}
 ?>
