@@ -226,11 +226,31 @@
 									</Posts>
 								</wfx:Timeline>
 							</wfx:TabPage>
+							<wfx:TabPage ID="pageInvitations" Title="Invitations">
+								<div style="text-align: right; padding: 24px;">
+									<wfx:Button CssClass="Primary" TargetURL="~/test.php" IconName="print" Text="Print Invitations" />
+								</div>
+								<div style="text-align: center;">
+									<wfx:Meter ID="mtrInvited" MinimumValue="0" MaximumValue="100" CurrentValue="30" Title="Invited" ForegroundColor="#00ACAC" BackgroundColor="#D9E0E7" DisplayStyle="Decimal" />
+									<wfx:Meter ID="mtrAttending" MinimumValue="0" MaximumValue="100" CurrentValue="50" Title="Attending" ForegroundColor="#348FE2" BackgroundColor="#D9E0E7" DisplayStyle="Decimal" />
+									<wfx:Meter ID="mtrDeclining" MinimumValue="0" MaximumValue="100" CurrentValue="20" Title="Declining" ForegroundColor="#727CB6" BackgroundColor="#D9E0E7" DisplayStyle="Decimal" />
+								</div>
+								<wfx:ListView ID="lvInvitations">
+									<Columns>
+										<wfx:ListViewColumn ID="lvcName" Title="Name" />
+										<wfx:ListViewColumn ID="lvcStreetAddress" Title="Street Address" MobileHidden="true" />
+										<wfx:ListViewColumn ID="lvcCity" Title="City" MobileHidden="true" />
+										<wfx:ListViewColumn ID="lvcState" Title="State" />
+										<wfx:ListViewColumn ID="lvcPostalCode" Title="Postal Code" MobileHidden="true" />
+										<wfx:ListViewColumn ID="lvcCountry" Title="Country" />
+									</Columns>
+								</wfx:ListView>
+							</wfx:TabPage>
 							<wfx:TabPage ID="pageResponses" Title="Responses">
 								<div style="text-align: center;">
-									<wfx:Meter ID="mtrChicken" MinimumValue="0" MaximumValue="100" CurrentValue="30" Title="Chicken" ForegroundColor="#00ACAC" BackgroundColor="#D9E0E7" />
-									<wfx:Meter ID="mtrBeef" MinimumValue="0" MaximumValue="100" CurrentValue="50" Title="Beef" ForegroundColor="#348FE2" BackgroundColor="#D9E0E7" />
-									<wfx:Meter ID="mtrVegetarian" MinimumValue="0" MaximumValue="100" CurrentValue="20" Title="Vegetarian" ForegroundColor="#727CB6" BackgroundColor="#D9E0E7" />
+									<wfx:Meter ID="mtrChicken" MinimumValue="0" MaximumValue="100" CurrentValue="30" Title="Chicken" ForegroundColor="#00ACAC" BackgroundColor="#D9E0E7" DisplayStyle="Decimal" />
+									<wfx:Meter ID="mtrBeef" MinimumValue="0" MaximumValue="100" CurrentValue="50" Title="Beef" ForegroundColor="#348FE2" BackgroundColor="#D9E0E7" DisplayStyle="Decimal" />
+									<wfx:Meter ID="mtrVegetarian" MinimumValue="0" MaximumValue="100" CurrentValue="20" Title="Vegetarian" ForegroundColor="#727CB6" BackgroundColor="#D9E0E7" DisplayStyle="Decimal" />
 								</div>
 								<!-- 
 									This is what we should be able to do in ObjectFX...
