@@ -210,12 +210,22 @@
 				</wfx:Section>
 			</Content>
 		</Page>
-		<Page FileName="events/$(eventID)" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Pages\EventDetailPage">
+		<Page FileName="events/$(eventID)/$(tabPage)" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Pages\EventDetailPage">
 			<Content>
 				<wfx:Section PlaceholderID="Content">
-					<wfx:TabContainer ID="tbsTabs">
+					<h1><html:Literal ID="litEventTitle" /></h1>
+					<wfx:TabContainer ID="tbsTabs" SelectedTabID="pageDetails">
 						<TabPages>
-							<wfx:TabPage ID="page1" Title="Timeline">
+							<wfx:TabPage ID="pageDetails" Title="Details">
+								<p>
+									<html:Literal ID="litEventDescription" />
+								</p>
+								<wfx:FormView ID="fvDetails">
+									<Items>
+										<wfx:FormViewItemLabel ID="lblWhen" IconName="clock-o" Title="When" />
+										<wfx:FormViewItemLabel ID="lblWhere" IconName="map-marker" Title="Where" />
+									</Items>
+								</wfx:FormView>
 								<wfx:Timeline>
 									<Posts>
 										<wfx:TimelinePost ID="post1" CreationUserName="Michael Becker" CreationUserImageURL="" ViewCount="15">
@@ -227,14 +237,22 @@
 								</wfx:Timeline>
 							</wfx:TabPage>
 							<wfx:TabPage ID="pageInvitations" Title="Invitations">
-								<div style="text-align: right; padding: 24px;">
-									<wfx:Button CssClass="Primary" TargetURL="~/test.php" IconName="print" Text="Print Invitations" />
-								</div>
 								<div style="text-align: center;">
-									<wfx:Meter ID="mtrInvited" MinimumValue="0" MaximumValue="100" CurrentValue="30" Title="Invited" ForegroundColor="#00ACAC" BackgroundColor="#D9E0E7" DisplayStyle="Decimal" />
-									<wfx:Meter ID="mtrAttending" MinimumValue="0" MaximumValue="100" CurrentValue="50" Title="Attending" ForegroundColor="#348FE2" BackgroundColor="#D9E0E7" DisplayStyle="Decimal" />
-									<wfx:Meter ID="mtrDeclining" MinimumValue="0" MaximumValue="100" CurrentValue="20" Title="Declining" ForegroundColor="#727CB6" BackgroundColor="#D9E0E7" DisplayStyle="Decimal" />
+									<wfx:Meter ID="mtrInvited" MinimumValue="0" MaximumValue="100" CurrentValue="30" Title="Invited" ForegroundColor="#348FE2" BackgroundColor="#D9E0E7" DisplayStyle="Decimal" />
+									<wfx:Meter ID="mtrAttending" MinimumValue="0" MaximumValue="100" CurrentValue="50" Title="Attending" ForegroundColor="#00ACAC" BackgroundColor="#D9E0E7" DisplayStyle="Decimal" />
+									<wfx:Meter ID="mtrDeclining" MinimumValue="0" MaximumValue="100" CurrentValue="20" Title="Declining" ForegroundColor="#FF5B57" BackgroundColor="#D9E0E7" DisplayStyle="Decimal" />
+									<wfx:Meter ID="mtrPending" MinimumValue="0" MaximumValue="100" CurrentValue="0" Title="Pending" ForegroundColor="#727CB6" BackgroundColor="#D9E0E7" DisplayStyle="Decimal" />
 								</div>
+								<table style="width: 100%; padding-bottom: 16px;">
+									<tr>
+										<td style="text-align: left; width: auto;">
+											<wfx:Button CssClass="Success" Enabled="false" Text="New Invitation" IconName="user-plus" />
+										</td>
+										<td style="text-align: right; width: auto;">
+											<wfx:Button CssClass="Primary" TargetURL="~/test.php" IconName="print" Text="Print Invitations" />
+										</td>
+									</tr>
+								</table>
 								<wfx:ListView ID="lvInvitations">
 									<Columns>
 										<wfx:ListViewColumn ID="lvcName" Title="Name" />
@@ -269,9 +287,9 @@
 										<wfx:ListViewColumn ID="lvcAttending" Title="Attending?" />
 										<wfx:ListViewColumn ID="lvcGuestCount" Title="Guests" />
 										<wfx:ListViewColumn ID="lvcMealPlan" Title="Meal plan" />
-										<wfx:ListViewColumn ID="lvcMessage" Title="Message" />
-										<wfx:ListViewColumn ID="lvcGuestType" Title="Type" />
-										<wfx:ListViewColumn ID="lvcInviteSource" Title="Invite Source" />
+										<wfx:ListViewColumn ID="lvcMessage" Title="Message" MobileHidden="True" />
+										<wfx:ListViewColumn ID="lvcGuestType" Title="Type" MobileHidden="True" />
+										<wfx:ListViewColumn ID="lvcInviteSource" Title="Invite Source" MobileHidden="True" />
 									</Columns>
 									<Items>
 										<wfx:ListViewItem>

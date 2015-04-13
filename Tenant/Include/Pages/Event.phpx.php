@@ -13,7 +13,9 @@
 	use Phast\WebControls\ListViewItemColumn;
 	
 	use PDO;
-			
+	
+	use FamilySuite\Objects\Event;
+	
 	class EventPage extends PhastPage
 	{
 		public function OnInitializing(CancelEventArgs $e)
@@ -68,12 +70,33 @@
 	}
 	class EventDetailPage extends PhastPage
 	{
+		private function InitializeDetails($page)
+		{
+			$tabPage = $page->GetControlByID("tbsTabs")->GetTabByID("pageDetails");
+			
+			$event = Event::GetByIDOrName($page->GetPathVariableValue("eventID"));
+			if ($event == null)
+			{
+				echo ("Invalid event");
+				die();
+			}
+			
+			$litEventTitle = $page->GetControlByID("litEventTitle");
+			$litEventTitle->Value = $event->Title;
+			
+			$litEventDescription = $tabPage->GetControlByID("litEventDescription");
+			$litEventDescription->Value = $event->Description;
+			
+			$fvDetails = $tabPage->GetControlByID("fvDetails");
+			$fvDetails->GetItemByID("lblWhen")->Value = $event->BeginTimestamp->format("l, F j, Y");
+		}
 		private function InitializeInvitationsMeters($page)
 		{
 			$tabPage = $page->GetControlByID("tbsTabs")->GetTabByID("pageInvitations");
 			$mtrInvited = $tabPage->GetControlByID("mtrInvited");
 			$mtrAttending = $tabPage->GetControlByID("mtrAttending");
 			$mtrDeclining = $tabPage->GetControlByID("mtrDeclining");
+			$mtrPending = $tabPage->GetControlByID("mtrPending");
 			
 			$pdo = DataSystem::GetPDO();
 			$query = "SELECT (SELECT COUNT(*) FROM Addresses) AS count_Invited, (SELECT COUNT(*) FROM Responses WHERE resp_Status = 1) AS count_Attending, (SELECT COUNT(*) FROM Responses WHERE resp_Status = 0) AS count_Declining";
@@ -92,12 +115,16 @@
 			$mtrDeclining->MinimumValue = 0;
 			$mtrDeclining->MaximumValue = $values["count_Invited"];
 			$mtrDeclining->CurrentValue = $values["count_Declining"];
+			
+			$mtrPending->MinimumValue = 0;
+			$mtrPending->MaximumValue = $values["count_Invited"];
+			$mtrPending->CurrentValue = ($values["count_Invited"] - $values["count_Attending"] - $values["count_Declining"]);
 		}
 		private function InitializeInvitations($page)
 		{
 			$tabPage = $page->GetControlByID("tbsTabs")->GetTabByID("pageInvitations");
 			$lvInvitations = $tabPage->GetControlByID("lvInvitations");
-				
+			
 			// we're going to actually submit data now
 			$pdo = DataSystem::GetPDO();
 			$query = "SELECT *, Countries.Title FROM Addresses, Countries WHERE Countries.ID = Addresses.CountryID";
@@ -131,7 +158,7 @@
 		{
 			$tabPage = $page->GetControlByID("tbsTabs")->GetTabByID("pageResponses");
 			$lvInvitees = $tabPage->GetControlByID("lvInvitees");
-				
+			
 			// we're going to actually submit data now
 			$pdo = DataSystem::GetPDO();
 			$query = "SELECT *, fs_EventGuestTypes.guesttype_Title, fs_EventInviteSources.invitesource_Title, MealPlans.Title AS mealplan_Title FROM Responses, fs_EventGuestTypes, fs_EventInviteSources, MealPlans WHERE Responses.resp_GuestTypeID = fs_EventGuestTypes.guesttype_ID AND Responses.resp_InviteSourceID = fs_EventInviteSources.invitesource_ID AND Responses.resp_MealOptionID = MealPlans.ID";
@@ -199,9 +226,40 @@
 		
 		public function OnInitializing(CancelEventArgs $e)
 		{
+			$this->InitializeDetails($e->RenderingPage);
+			
 			$this->InitializeInvitations($e->RenderingPage);
 			$this->InitializeResponses($e->RenderingPage);
 			$this->InitializeInvitationsMeters($e->RenderingPage);
+			
+			$tbsTabs = $e->RenderingPage->GetControlByID("tbsTabs");
+			$tabPageID = $e->RenderingPage->GetPathVariableValue("tabPage");
+			if ($tabPageID != "")
+			{
+				switch ($tabPageID)
+				{
+					case "details":
+					{
+						$tbsTabs->SelectedTabID = "pageDetails";
+						break;
+					}
+					case "invitations":
+					{
+						$tbsTabs->SelectedTabID = "pageInvitations";
+						break;
+					}
+					case "responses":
+					{
+						$tbsTabs->SelectedTabID = "pageResponses";
+						break;
+					}
+					default:
+					{
+						$tbsTabs->SelectedTabID = "pageDetails";
+						break;
+					}
+				}
+			}
 		}
 	}
 ?>
