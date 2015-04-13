@@ -38,6 +38,11 @@
 		 * @var DateTime
 		 */
 		public $EndTimestamp;
+		/**
+		 * The place at which this Event is located.
+		 * @var Location
+		 */
+		public $Location;
 		
 		public static function GetByAssoc($values)
 		{
@@ -48,6 +53,7 @@
 			$item->Description = $values["event_Description"];
 			$item->BeginTimestamp = new DateTime($values["event_BeginTimestamp"]);
 			$item->EndTimestamp = new DateTime($values["event_EndTimestamp"]);
+			$item->Location = Location::GetByID($values["event_LocationID"]);
 			return $item;
 		}
 		public static function GetByIDOrName($idOrName)

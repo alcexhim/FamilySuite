@@ -89,6 +89,7 @@
 			
 			$fvDetails = $tabPage->GetControlByID("fvDetails");
 			$fvDetails->GetItemByID("lblWhen")->Value = $event->BeginTimestamp->format("l, F j, Y");
+			$fvDetails->GetItemByID("lblWhere")->Value = $event->Location->ToHTML();
 		}
 		private function InitializeInvitationsMeters($page)
 		{
