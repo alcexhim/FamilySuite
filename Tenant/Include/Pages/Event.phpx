@@ -152,6 +152,9 @@
 										<li>
 											<input type="radio" name="guest_MealPlanID" id="wizard_step2_optMealPlan3" value="3" /> <label for="wizard_step2_optMealPlan3">Vegetarian</label>
 										</li>
+										<li>
+											<input type="radio" name="guest_MealPlanID" id="wizard_step2_optMealPlan4" value="4" /> <label for="wizard_step2_optMealPlan4">None</label>
+										</li>
 									</ul>
 									<label for="txtSpecialDietaryNeeds">Special dietary needs: </label><textarea id="txtSpecialDietaryNeeds" name="guest_SpecialDietaryNeeds" placeholder="Please describe any special dietary needs that require consideration" style="width: 100%;"></textarea>
 									<div style="margin-top: 32px; text-align: right;">
@@ -217,24 +220,36 @@
 					<wfx:TabContainer ID="tbsTabs" SelectedTabID="pageDetails">
 						<TabPages>
 							<wfx:TabPage ID="pageDetails" Title="Details">
-								<p>
-									<html:Literal ID="litEventDescription" />
-								</p>
-								<wfx:FormView ID="fvDetails">
-									<Items>
-										<wfx:FormViewItemLabel ID="lblWhen" IconName="clock-o" Title="When" />
-										<wfx:FormViewItemLabel ID="lblWhere" IconName="map-marker" Title="Where" />
-									</Items>
-								</wfx:FormView>
-								<wfx:Timeline>
-									<Posts>
-										<wfx:TimelinePost ID="post1" CreationUserName="Michael Becker" CreationUserImageURL="" ViewCount="15">
-											<Content>
-												This is going to be a fun wedding!
-											</Content>
-										</wfx:TimelinePost>
-									</Posts>
-								</wfx:Timeline>
+								<div class="ColumnContainer TwoColumn">
+									<div class="Column">
+										<h2>About</h2>
+										<p>
+											<html:Literal ID="litEventDescription" />
+										</p>
+										<wfx:FormView ID="fvDetails">
+											<Items>
+												<wfx:FormViewItemLabel ID="lblWhen" IconName="clock-o" Title="When" />
+												<wfx:FormViewItemLabel ID="lblWhere" IconName="map-marker" Title="Where" />
+											</Items>
+										</wfx:FormView>
+										<wfx:Button ID="cmdGetDirections" Text="Get Directions" CssClass="Primary" TargetFrame="_blank" IconName="google" />
+										<!-- 
+										<wfx:Timeline>
+											<Posts>
+												<wfx:TimelinePost ID="post1" CreationUserName="Michael Becker" CreationUserImageURL="" ViewCount="15">
+													<Content>
+														This is going to be a fun wedding!
+													</Content>
+												</wfx:TimelinePost>
+											</Posts>
+										</wfx:Timeline>
+										-->
+									</div>
+									<div class="Column">
+										<h2>Related Events</h2>
+										<html:Paragraph ID="paraRelatedEvents" />
+									</div>
+								</div>
 							</wfx:TabPage>
 							<wfx:TabPage ID="pageInvitations" Title="Invitations">
 								<div style="text-align: center;">

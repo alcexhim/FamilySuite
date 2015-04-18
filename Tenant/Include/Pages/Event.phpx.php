@@ -15,7 +15,9 @@
 	use PDO;
 	
 	use FamilySuite\Objects\Event;
-	
+use Phast\HTMLControls\Anchor;
+use Phast\HTMLControl;
+			
 	class EventPage extends PhastPage
 	{
 		public function OnInitializing(CancelEventArgs $e)
@@ -90,6 +92,34 @@
 			$fvDetails = $tabPage->GetControlByID("fvDetails");
 			$fvDetails->GetItemByID("lblWhen")->Value = $event->BeginTimestamp->format("l, F j, Y");
 			$fvDetails->GetItemByID("lblWhere")->Value = $event->Location->ToHTML();
+			
+			$gMapsUrl = "https://www.google.com/maps/place/";
+			$gMapsUrl .= $event->Location->Title . ", " . $event->Location->StreetAddress . ", " . $event->Location->City . ", " . $event->Location->State . " " . $event->Location->PostalCode;
+			$gMapsUrl = str_replace(" ", "+", $gMapsUrl);
+
+			$cmdGetDirections = $tabPage->GetControlByID("cmdGetDirections");
+			$cmdGetDirections->TargetURL = $gMapsUrl;
+			
+			$paraRelatedEvents = $tabPage->GetControlByID("paraRelatedEvents");
+			
+			$events = $event->GetRelatedEvents();
+			
+			if (count($events) > 0)
+			{
+				$ul = new HTMLControl("ul");
+				foreach ($events as $relatedEvent)
+				{
+					$li = new HTMLControl("li");
+					
+					$ctl = new Anchor();
+					$ctl->TargetURL = "~/events/" . $relatedEvent->Name;
+					$ctl->InnerHTML = $relatedEvent->Title;
+					$li->Controls[] = $ctl;
+					
+					$ul->Controls[] = $li;
+				}
+				$paraRelatedEvents->Controls[] = $ul;
+			}
 		}
 		private function InitializeInvitationsMeters($page)
 		{
