@@ -72,6 +72,30 @@
 			$values = $statement->fetch(PDO::FETCH_ASSOC);
 			return Event::GetByAssoc($values);
 		}
+		
+		/**
+		 * @return Event[] The events related to this event.
+		 */
+		public function GetRelatedEvents()
+		{
+			$pdo = DataSystem::GetPDO();
+			$query = "SELECT * FROM Events, fs_RelatedEvents WHERE Events.event_ID = fs_RelatedEvents.related_SecondaryEvent AND fs_RelatedEvents.related_PrimaryEvent = :related_PrimaryEventID";
+			$statement = $pdo->prepare($query);
+			$statement->execute(array
+			(
+				"related_PrimaryEventID" => $this->ID
+			));
+			
+			$retval = array();
+			$count = $statement->rowCount();
+			for ($i = 0; $i < $count; $i++)
+			{
+				$values = $statement->fetch(PDO::FETCH_ASSOC);
+				$item = Event::GetByAssoc($values);
+				if ($item != null) $retval[] = $item;
+			}
+			return $retval;
+		}
 	}
 	
 ?>
