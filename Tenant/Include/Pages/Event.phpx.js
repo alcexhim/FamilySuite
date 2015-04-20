@@ -96,4 +96,21 @@ window.addEventListener("load", function()
 		e.stopPropagation();
 		return false;
 	});
+	
+	var chkSpecialDietaryNeeds = document.getElementById("chkSpecialDietaryNeeds");
+	
+	var divSpecialDietaryNeeds = document.getElementById("divSpecialDietaryNeeds");
+	divSpecialDietaryNeeds.style.display = "none";
+	
+	chkSpecialDietaryNeeds.addEventListener("change", function(e)
+	{
+		if (this.checked)
+		{
+			divSpecialDietaryNeeds.style.display = "block";
+		}
+		else
+		{
+			divSpecialDietaryNeeds.style.display = "none";
+		}
+	});
 });

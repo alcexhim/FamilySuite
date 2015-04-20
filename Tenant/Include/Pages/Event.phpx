@@ -156,7 +156,11 @@
 											<input type="radio" name="guest_MealPlanID" id="wizard_step2_optMealPlan4" value="4" /> <label for="wizard_step2_optMealPlan4">None</label>
 										</li>
 									</ul>
-									<label for="txtSpecialDietaryNeeds">Special dietary needs: </label><textarea id="txtSpecialDietaryNeeds" name="guest_SpecialDietaryNeeds" placeholder="Please describe any special dietary needs that require consideration" style="width: 100%;"></textarea>
+									
+									<input type="checkbox" id="chkSpecialDietaryNeeds" /> <label for="chkSpecialDietaryNeeds">I have special dietary needs that must be considered</label>
+									<div id="divSpecialDietaryNeeds" style="margin: 16px;">
+										<textarea id="txtSpecialDietaryNeeds" name="guest_SpecialDietaryNeeds" placeholder="Please describe any special dietary needs that require consideration" style="width: 100%;"></textarea>
+									</div>
 									<div style="margin-top: 32px; text-align: right;">
 										<a href="#" class="Button" onclick="document.getElementById('wizard').NativeObject.SetSelectedPageIndex(0);">Back</a>
 										<a href="#" class="Button Primary" id="wizard_step2_cmdNext">Next</a>
