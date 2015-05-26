@@ -9,10 +9,16 @@
 Tenant/Include/Configuration.*
 Manager/Include/Configuration.*
 Common/Include/Configuration.*
+Tenant/Include/Configuration/*
+Manager/Include/Configuration/*
+Common/Include/Configuration/*
 # but include the configuration template files
 !Tenant/Include/Configuration.inc.php.template
 !Manager/Include/Configuration.inc.php.template
 !Common/Include/Configuration.inc.php.template
+!Tenant/Include/Configuration/Website.xml.template
+!Manager/Include/Configuration/Website.xml.template
+!Common/Include/Configuration/Website.xml.template
 # disallow all resource bundles (which could contain proprietary content)
 Tenant/Resources/*
 # but allow common resource files that ship with PhoenixSNS
