@@ -4,6 +4,7 @@
 	use DateTime;
 	use PDO;
 	
+	use Phast\System;
 	use Phast\Data\DataSystem;
 	
 	class Country
@@ -21,7 +22,7 @@
 		public static function GetByID($id)
 		{
 			$pdo = DataSystem::GetPDO();
-			$query = "SELECT * FROM Countries WHERE ID = :country_ID";
+			$query = "SELECT * FROM " . System::GetConfigurationValue("Database.TablePrefix") . "Countries WHERE country_ID = :country_ID";
 			$statement = $pdo->prepare($query);
 			$statement->execute(array
 			(
