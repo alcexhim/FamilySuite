@@ -1,6 +1,24 @@
 <Website>
 	<Pages>
-	
+		<Page FileName="events/$(eventID)/invitations/email" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Pages\EventEmailPage">
+			<Content>
+				<wfx:Section PlaceholderID="Content">
+					<wfx:FormView ID="fv">
+						<Items>
+							<wfx:FormViewItemText ID="txtSubject" Name="message_Subject" Title="Subject" />
+							<wfx:FormViewItemMemo ID="txtContent" Name="message_Content" Title="Content" />
+						</Items>
+					</wfx:FormView>
+					<hr />
+					<div style="text-align: right; padding: 32px;">
+						<wfx:Button TargetURL="~/events/$(Path:eventID)/invitations" CssClass="" Text="Cancel" />
+						<wfx:Button CssClass="Primary" Text="Send Message" />
+					</div>
+				</wfx:Section>
+			</Content>
+		</Page>
+		<Page FileName="events/$(eventID)/invitations/print" CodeBehindClassName="FamilySuite\Tenant\Pages\EventPrintPage">
+		</Page>
 		<Page FileName="events/$(eventID)/respond2" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Pages\EventPage">
 			<Scripts>
 				<Script FileName="~/Include/Pages/Event.phpx.js" />
@@ -99,10 +117,6 @@
 				</wfx:Section>
 			</Content>
 		</Page>
-		
-		
-		
-		
 		
 		<Page FileName="events/$(eventID)/respond" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Pages\EventPage">
 			<Scripts>
@@ -268,7 +282,8 @@
 											<wfx:Button CssClass="Success" Enabled="false" Text="New Invitation" IconName="user-plus" />
 										</td>
 										<td style="text-align: right; width: auto;">
-											<wfx:Button CssClass="Primary" TargetURL="~/test.php" IconName="print" Text="Print Invitations" />
+											<wfx:Button CssClass="" TargetURL="~/events/$(Path:eventID)/invitations/email" IconName="envelope" Text="E-mail Guests" />
+											<wfx:Button CssClass="" TargetURL="~/events/$(Path:eventID)/invitations/print" IconName="print" Text="Print Invitations" />
 										</td>
 									</tr>
 								</table>
