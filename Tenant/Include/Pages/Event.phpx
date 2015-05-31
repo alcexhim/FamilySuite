@@ -306,8 +306,7 @@
 								<table style="width: 100%; padding-bottom: 16px;">
 									<tr>
 										<td style="text-align: left; width: auto;">
-											<wfx:Button CssClass="Primary" Enabled="false" Text="New Invitation" IconName="user-plus" TargetScript="wndGuestDetails.ShowDialog();" />
-											<wfx:Button CssClass="Primary" Enabled="false" Text="Modify" IconName="pencil-square-o" TargetScript="wndGuestDetails.ShowDialog();" />
+											<wfx:Button CssClass="Primary" Enabled="false" Text="New Invitation" IconName="user-plus" TargetScript="wndGuestDetails.GuestID = -1; wndGuestDetails.ShowDialog(); return false;" />
 										</td>
 										<td style="text-align: right; width: auto;">
 											<wfx:Button CssClass="" TargetURL="~/events/$(Path:eventID)/invitations/email" IconName="envelope" Text="E-mail Guests" />
