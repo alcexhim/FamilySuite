@@ -6,6 +6,9 @@
 	
 	use Phast\Data\DataSystem;
 	use Phast\System;
+
+	use Phast\HTMLControls\Anchor;
+	use Phast\HTMLControl;
 	
 	use Phast\WebControls\ListView;
 	use Phast\WebControls\ListViewColum;
@@ -15,9 +18,73 @@
 	use PDO;
 	
 	use FamilySuite\Objects\Event;
-use Phast\HTMLControls\Anchor;
-use Phast\HTMLControl;
+	
+	class EventPrintPage extends PhastPage
+	{
+		public function OnInitializing(CancelEventArgs $e)
+		{
+			header("Content-Type: text/csv; charset=utf-8");
+			header("Content-Disposition: attachment; filename=addresses.csv");
 			
+			$pdo = DataSystem::GetPDO();
+			$statement = $pdo->prepare("SELECT * FROM Addresses");
+			$result = $statement->execute();
+			
+			if ($result === false)
+			{
+				
+			}
+			
+			$count = $statement->rowCount();
+			$ret = "";
+			
+			$columnSeparator = ",";
+			$lineSeparator = "\n";
+			
+			$ret .= "\"Name\"" . $columnSeparator .
+			"\"StreetAddress\"" . $columnSeparator .
+			"\"City\"" . $columnSeparator .
+			"\"State\"" . $columnSeparator .
+			"\"PostalCode\"" . $columnSeparator .
+			"\"FormattedAddressLine2\"" . $columnSeparator .
+			"\"CountryName\"" . $lineSeparator;
+			
+			$ignoreEmptyAddresses = true;
+			
+			for ($i = 0; $i < $count; $i++)
+			{
+				$values = $statement->fetch(PDO::FETCH_ASSOC);
+				
+				if ($ignoreEmptyAddresses && ($values["StreetAddress"] == "" || $values["City"] == "" || $values["State"] == "" || $values["PostalCode"] == ""))
+				{
+					continue;
+				}
+			
+				$country = "";
+				if ($values["CountryID"] != 1)
+				{
+					$query = "SELECT * FROM Countries WHERE ID = " . $values["CountryID"];
+					$statement1 = $pdo->prepare($query);
+					$result1 = $statement1->execute();
+					$values1 = $statement1->fetch(PDO::FETCH_ASSOC);
+					$country = $values1["Title"];
+				}
+				
+				$formattedAddressLine2 = $values["City"] . (($values["City"] == "" || $values["State"] == "") ? "" : ", ") . $values["State"];
+				
+				$ret .= "\"" . $values["Name"] . "\"" . $columnSeparator;
+				$ret .= "\"" . $values["StreetAddress"] . "\"" . $columnSeparator;
+				$ret .= "\"" . $values["City"] . "\"" . $columnSeparator;
+				$ret .= "\"" . $values["State"] . "\"" . $columnSeparator;
+				$ret .= "\"" . $values["PostalCode"] . "\"" . $columnSeparator;
+				$ret .= "\"" . $formattedAddressLine2 . "\"" . $columnSeparator;
+				$ret .= "\"" . $country . "\"";
+				$ret .= $lineSeparator;
+			}
+			echo ($ret);
+			exit();
+		}
+	}
 	class EventPage extends PhastPage
 	{
 		public function OnInitializing(CancelEventArgs $e)
@@ -158,7 +225,7 @@ use Phast\HTMLControl;
 			
 			// we're going to actually submit data now
 			$pdo = DataSystem::GetPDO();
-			$query = "SELECT *, Countries.Title FROM Addresses, Countries WHERE Countries.ID = Addresses.CountryID";
+			$query = "SELECT *, fs_Countries.country_Title FROM Addresses, fs_Countries WHERE fs_Countries.country_ID = Addresses.CountryID";
 			$statement = $pdo->prepare($query);
 			$statement->execute();
 			$count = $statement->rowCount();
@@ -179,7 +246,7 @@ use Phast\HTMLControl;
 					new ListViewItemColumn("lvcCity", $values["City"]),
 					new ListViewItemColumn("lvcState", $values["State"]),
 					new ListViewItemColumn("lvcPostalCode", $values["PostalCode"]),
-					new ListViewItemColumn("lvcCountry", $values["Title"])
+					new ListViewItemColumn("lvcCountry", $values["country_Title"])
 				));
 			}
 			
