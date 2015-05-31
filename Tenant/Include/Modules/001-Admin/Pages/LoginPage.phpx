@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Website>
 	<Pages>
+		<Page FileName="account/logout" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Modules\Admin\Pages\LogoutPage"></Page>
 		<Page FileName="account/login/$(key)" MasterPageFileName="Blank" CodeBehindClassName="FamilySuite\Tenant\Modules\Admin\Pages\LoginPage" CssClass="LoginPage">
 			<References>
 				<Reference TagPrefix="wfx" NamespacePath="Phast\WebControls" />

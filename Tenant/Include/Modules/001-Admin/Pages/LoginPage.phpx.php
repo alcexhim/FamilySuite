@@ -7,6 +7,16 @@
 	use Phast\CancelEventArgs;
 use FamilySuite\Objects\User;
 	
+	class LogoutPage extends PhastPage
+	{
+		public function OnInitializing(CancelEventArgs $e)
+		{
+			$_SESSION["Authentication.LoginToken"] = null;
+			System::Redirect("~/");
+			
+			$e->Cancel = true;
+		}
+	}
 	class LoginPage extends PhastPage
 	{
 		public function OnClassLoaded(EventArgs $e)
