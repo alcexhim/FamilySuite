@@ -214,6 +214,33 @@
 			<Content>
 				<wfx:Section PlaceholderID="Content">
 					<h1><html:Literal ID="litEventTitle" /></h1>
+					<wfx:Window ID="wndGuestDetails" Title="Guest Details" Visible="false" Width="600px">
+						<ContentControls>
+							<wfx:FormView ID="formview1" Width="100%">
+								<Items>
+									<wfx:FormViewItemHeader Title="Personal information" />
+									<wfx:FormViewItemText ID="txtName" Name="resp_EnteredName" Title="Name" />
+									<wfx:FormViewItemText ID="txtEmailAddress" Name="resp_EnteredEmailAddress" Title="E-mail address" />
+									<wfx:FormViewItemMemo ID="txtMessage" Name="resp_Message" Title="Message (optional)" />
+									
+									<wfx:FormViewItemHeader Title="Meal plan" />
+									<wfx:FormViewItemChoice ID="cboMealPlan" Name="resp_MealPlanID" Title="Meal plan" RequireSelectionFromChoices="true">
+										<Items>
+											<wfx:FormViewItemChoiceValue Title="Chicken" Value="1" />
+											<wfx:FormViewItemChoiceValue Title="Beef" Value="2" />
+											<wfx:FormViewItemChoiceValue Title="Vegetarian" Value="3" />
+											<wfx:FormViewItemChoiceValue Title="Other" Value="4" />
+										</Items>
+									</wfx:FormViewItemChoice>
+									<wfx:FormViewItemMemo ID="txtMealPlanComments" Name="resp_MealPlanComments" Title="Special dietary needs (optional)" />
+								</Items>
+							</wfx:FormView>
+						</ContentControls>
+						<FooterControls>
+							<wfx:Button ID="cmdGuestDetailsCancel" TargetScript="wndGuestDetails.Hide();" Text="Cancel" />
+							<wfx:Button ID="cmdGuestDetailsSaveChanges" CssClass="Primary" Text="Save Changes" />
+						</FooterControls>
+					</wfx:Window>
 					<wfx:TabContainer ID="tbsTabs" SelectedTabID="pageDetails">
 						<TabPages>
 							<wfx:TabPage ID="pageDetails" Title="Details">
@@ -246,10 +273,11 @@
 								<table style="width: 100%; padding-bottom: 16px;">
 									<tr>
 										<td style="text-align: left; width: auto;">
-											<wfx:Button CssClass="Success" Enabled="false" Text="New Invitation" IconName="user-plus" />
+											<wfx:Button CssClass="Primary" Enabled="false" Text="New Invitation" IconName="user-plus" TargetScript="wndGuestDetails.ShowDialog();" />
+											<wfx:Button CssClass="Primary" Enabled="false" Text="Modify" IconName="pencil-square-o" TargetScript="wndGuestDetails.ShowDialog();" />
 										</td>
 										<td style="text-align: right; width: auto;">
-											<wfx:Button CssClass="Primary" TargetURL="~/test.php" IconName="print" Text="Print Invitations" />
+											<wfx:Button CssClass="Success" TargetURL="~/test.php" IconName="print" Text="Print Invitations" />
 										</td>
 									</tr>
 								</table>
