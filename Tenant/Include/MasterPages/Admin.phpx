@@ -32,8 +32,8 @@
 							
 						</div>
 						<div class="Text">
-							<span class="UserName"></span>
-							<span class="StatusText"></span>
+							<span class="UserName"><html:Literal ID="litUserName" Value="User name" /></span>
+							<span class="StatusText"><html:Literal ID="litStatusText" Value="Status text" /></span>
 						</div>
 					</div>
 					<wfx:Menu ID="mnuSidebar" Orientation="Vertical">
