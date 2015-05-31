@@ -1,6 +1,6 @@
 function HasUserSelectedMealPlan()
 {
-	return (wizard_step2_optMealPlan1.checked || wizard_step2_optMealPlan2.checked || wizard_step2_optMealPlan3.checked);
+	return (wizard_step2_optMealPlan1.checked || wizard_step2_optMealPlan2.checked || wizard_step2_optMealPlan3.checked || wizard_step2_optMealPlan4.checked);
 }
 
 window.addEventListener("load", function()
@@ -59,6 +59,7 @@ window.addEventListener("load", function()
 	var wizard_step2_optMealPlan1 = document.getElementById("wizard_step2_optMealPlan1");
 	var wizard_step2_optMealPlan2 = document.getElementById("wizard_step2_optMealPlan2");
 	var wizard_step2_optMealPlan3 = document.getElementById("wizard_step2_optMealPlan3");
+	var wizard_step2_optMealPlan4 = document.getElementById("wizard_step2_optMealPlan4");
 	
 	var wizard_step2_alertMealPlanRequired = document.getElementById("wizard_step2_alertMealPlanRequired");
 	
@@ -94,5 +95,22 @@ window.addEventListener("load", function()
 		e.preventDefault();
 		e.stopPropagation();
 		return false;
+	});
+	
+	var chkSpecialDietaryNeeds = document.getElementById("chkSpecialDietaryNeeds");
+	
+	var divSpecialDietaryNeeds = document.getElementById("divSpecialDietaryNeeds");
+	divSpecialDietaryNeeds.style.display = "none";
+	
+	chkSpecialDietaryNeeds.addEventListener("change", function(e)
+	{
+		if (this.checked)
+		{
+			divSpecialDietaryNeeds.style.display = "block";
+		}
+		else
+		{
+			divSpecialDietaryNeeds.style.display = "none";
+		}
 	});
 });
