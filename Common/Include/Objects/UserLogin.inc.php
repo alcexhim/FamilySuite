@@ -14,6 +14,12 @@
 	class UserLogin
 	{
 		/**
+		 * The internal identifier of this UserLogin.
+		 * @var int
+		 */
+		public $ID;
+		
+		/**
 		 * The User associated with this login.
 		 * @var User
 		 */
@@ -54,6 +60,7 @@
 		public static function GetByRecord($record)
 		{
 			$item = new UserLogin();
+			$item->ID = $record->GetColumnByName("ID")->Value;
 			$item->User = User::GetByID($record->GetColumnByName("UserID")->Value);
 			$item->Token = $record->GetColumnByName("Token")->Value;
 			$item->BeginTimestamp = new DateTime($record->GetColumnByName("BeginTimestamp")->Value);
@@ -64,6 +71,10 @@
 			return $item;
 		}
 		
+		public static function GetByCurrentToken()
+		{
+			return UserLogin::GetByToken($_SESSION["Authentication.LoginToken"]);
+		}
 		public static function GetByToken($token)
 		{
 			$tblUserLogins = Table::Get("UserLogins", "login_");

@@ -28,6 +28,12 @@
 		public $DisplayName;
 		
 		/**
+		 * The current login token for this user.
+		 * @var UserLogin
+		 */
+		private $_LoginToken;
+		
+		/**
 		 * Logs in the current user and returns the login token for this login.
 		 * @return UserLogin
 		 */
@@ -49,10 +55,22 @@
 			
 			if ($result === false) return null;
 			
-			return UserLogin::GetByToken($token);
+			$this->_LoginToken = UserLogin::GetByToken($token);
+			return $this->_LoginToken;
 		}
 		public function Logout()
 		{
+			if ($this->_LoginToken != null)
+			{
+				$pdo = DataSystem::GetPDO();
+				
+				$query = "UPDATE fs_UserLogins SET login_EndTimestamp = NOW() WHERE login_ID = :login_ID";
+				$statement = $pdo->prepare($query);
+				$result = $statement->execute(array
+				(
+					":login_ID" => $this->_LoginToken->ID
+				));
+			}
 		}
 		
 		public static function GetByAssoc($values)

@@ -6,11 +6,15 @@
 	use Phast\System;
 	use Phast\CancelEventArgs;
 use FamilySuite\Objects\User;
-	
+use FamilySuite\Objects\UserLogin;
+		
 	class LogoutPage extends PhastPage
 	{
 		public function OnInitializing(CancelEventArgs $e)
 		{
+			$token = UserLogin::GetByCurrentToken();
+			if ($token != null) $token->User->Logout();
+			
 			$_SESSION["Authentication.LoginToken"] = null;
 			System::Redirect("~/");
 			
