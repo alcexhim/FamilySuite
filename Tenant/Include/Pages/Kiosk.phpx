@@ -1,0 +1,12 @@
+<Website>
+	<Pages>
+		<Page FileName="kiosks/$(kioskID)/$(actionID)" MasterPageFileName="Kiosk" CodeBehindClassName="FamilySuite\Tenant\Pages\KioskPage">
+			<Content>
+				<wfx:Section ID="Content">
+					<h3>Front Door Kiosk</h3>
+					<a href="#">Ring Doorbell</a>
+				</wfx:Section>
+			</Content>
+		</Page>
+	</Pages>
+</Website>
