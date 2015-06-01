@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Website>
+	<Pages>
+		<Page FileName="color" MasterPageFileName="Blank" ClassName="FamilySuite\Tenant\Pages\ColorPage">
+			<Content>
+				<wfx:Section PlaceholderID="Content">
+					<table style="width: 100%; background-color: #FFFFFF; padding: 32px;">
+						<tr>
+							<td>
+								<label>Preview:</label>
+							</td>
+							<td>
+								<div style="width: 180px; height: 96px; border: solid 1px #000000; background-color: rgb(217, 210, 255);" id="div"></div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Red:</label>
+							</td>
+							<td>
+								<wfx:TrackBar ID="sldRed" MinimumValue="0" MaximumValue="255" CurrentValue="217" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Green:</label>
+							</td>
+							<td>
+								<wfx:TrackBar ID="sldGreen" MinimumValue="0" MaximumValue="255" CurrentValue="210" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Blue:</label>
+							</td>
+							<td>
+								<wfx:TrackBar ID="sldBlue" MinimumValue="0" MaximumValue="255" CurrentValue="255" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>HTML:</label>
+							</td>
+							<td>
+								<input type="text" id="txt" value="#AA33CC" />
+							</td>
+						</tr>
+					</table>
+					<script type="text/javascript">
+					var sldRed = null;
+					var sldGreen = null;
+					var sldBlue = null;
+					var div = null;
+					var txt = null;
+					
+					function Color()
+					{
+						this.Red = 0;
+						this.Green = 0;
+						this.Blue = 0;
+						
+						this.ToRGBString = function()
+						{
+							return "rgb(" + this.Red.toString() + ", " + this.Green.toString() + ", " + this.Blue.toString() + ")";
+						};
+						this.ToHexString = function()
+						{
+							return (this.Red.toString(16).padLeft(2, '0') + this.Green.toString(16).padLeft(2, '0') + this.Blue.toString(16).padLeft(2, '0')).toUpperCase();
+						};
+					}
+					Color.FromRGB = function(red, green, blue)
+					{
+						var color = new Color();
+						color.Red = red;
+						color.Green = green;
+						color.Blue = blue;
+						return color;
+					};
+					Color.FromHexString = function(colorstr)
+					{
+						var sRed = colorstr.substr(0, 2);
+						var sGreen = colorstr.substr(2, 2);
+						var sBlue = colorstr.substr(4, 2);
+						
+						var iRed = parseInt(sRed, 16);
+						var iGreen = parseInt(sGreen, 16);
+						var iBlue = parseInt(sBlue, 16);
+						
+						return Color.FromRGB(iRed, iGreen, iBlue);
+					};
+					
+					function UpdateColor(color)
+					{
+						div.style.backgroundColor = color.ToRGBString();
+						var colorstr = color.ToHexString();
+						txt.value = "#" + colorstr;
+						window.location.hash = colorstr;
+					}
+					
+					function txt_Change(sender, e)
+					{
+						var colorstr = txt.value.substr(1);
+						var color = Color.FromHexString(colorstr);
+						UpdateColor(color);
+					}
+					function sld_Change(sender, e)
+					{
+						var red = sldRed.get_CurrentValue();
+						var green = sldGreen.get_CurrentValue();
+						var blue = sldBlue.get_CurrentValue();
+						var color = Color.FromRGB(red, green, blue);
+						UpdateColor(color);
+					}
+					
+					window.addEventListener("hashchange", function()
+					{
+						if (window.location.hash)
+						{
+							txt.value = window.location.hash;
+							txt_Change(null, null);
+						}
+						else
+						{
+							sld_Change(null, null);
+						}
+					});
+					
+					window.addEventListener("load", function()
+					{
+						div = document.getElementById("div");
+						txt = document.getElementById("txt");
+						
+						sldRed = document.getElementById("sldRed").NativeObject;
+						sldRed.EventHandlers.Change.Add(sld_Change);
+						
+						sldGreen = document.getElementById("sldGreen").NativeObject;
+						sldGreen.EventHandlers.Change.Add(sld_Change);
+						
+						sldBlue = document.getElementById("sldBlue").NativeObject;
+						sldBlue.EventHandlers.Change.Add(sld_Change);
+						
+						if (window.location.hash)
+						{
+							txt.value = window.location.hash;
+							txt_Change(null, null);
+						}
+						else
+						{
+							sld_Change(null, null);
+						}
+					});
+					</script>
+				</wfx:Section>
+			</Content>
+		</Page>
+	</Pages>
+</Website>
