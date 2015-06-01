@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Website>
+	<Pages>
+		<Page FileName="API/Member/$(action)" CodeBehindClassName="FamilySuite\Tenant\Modules\API\Pages\MemberPage">
+		</Page>
+	</Pages>
+</Website>

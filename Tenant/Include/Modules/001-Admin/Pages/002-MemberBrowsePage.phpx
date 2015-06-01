@@ -6,26 +6,25 @@
 				<Reference TagPrefix="wfx" NamespacePath="Phast\WebControls" />
 				<Reference TagPrefix="html" NamespacePath="Phast\HTMLControls" />
 			</References>
+			<EventHandlers>
+				<EventHandler ControlID="cmdMemberPropertiesDiscardChanges" EventName="click"><![CDATA[
+					wndMemberProperties.Hide();
+					
+					e.preventDefault();
+					e.stopPropagation();
+					return false;
+				]]></EventHandler>
+			</EventHandlers>
 			<Content>
 				<wfx:Section PlaceholderID="Content">
-					<wfx:ListView>
+					<wfx:ListView ID="lvMembers" OnItemActivate="lvMembers_ItemActivate();">
 						<Columns>
-							<wfx:ListViewColumn ID="lvcName" Title="Name" />
+							<wfx:ListViewColumn ID="lvcUserName" Title="User Name" />
+							<wfx:ListViewColumn ID="lvcDisplayName" Title="Display Name" />
 							<wfx:ListViewColumn ID="lvcAge" Title="Age" />
+							<wfx:ListViewColumn ID="lvcPoints" Title="Points" />
 						</Columns>
 						<Items>
-							<wfx:ListViewItem>
-								<Columns>
-									<wfx:ListViewItemColumn ID="lvcName" Content="Lily Azcona" />
-									<wfx:ListViewItemColumn ID="lvcAge" Content="24 years" />
-								</Columns>
-							</wfx:ListViewItem>
-							<wfx:ListViewItem>
-								<Columns>
-									<wfx:ListViewItemColumn ID="lvcName" Content="Michael Becker" />
-									<wfx:ListViewItemColumn ID="lvcAge" Content="23 years" />
-								</Columns>
-							</wfx:ListViewItem>
 						</Items>
 					</wfx:ListView>
 				</wfx:Section>

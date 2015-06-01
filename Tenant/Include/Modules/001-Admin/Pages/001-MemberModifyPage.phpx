@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Website>
+	<Pages>
+		<Page FileName="members/$(memberName)/modify" MasterPageFileName="Admin" CodeBehindClassName="FamilySuite\Tenant\Modules\Frontend\Pages\MemberModifyPage">
+			<References>
+				<Reference TagPrefix="wfx" NamespacePath="Phast\WebControls" />
+				<Reference TagPrefix="html" NamespacePath="Phast\HTMLControls" />
+			</References>
+			<Content>
+				<wfx:Section PlaceholderID="Content">
+					<wfx:TabContainer ID="tbsTabs" SelectedTabID="tabGeneralInformation">
+						<TabPages>
+							<wfx:TabPage ID="tabGeneralInformation" Title="General Information">
+								<wfx:FormView ID="fvGeneralInformation">
+									<Items>
+										<wfx:FormViewItemText ID="txtUserName" Name="user_UserName" Title="User name" />
+										<wfx:FormViewItemText ID="txtDisplayName" Name="user_DisplayName" Title="Display name" />
+									</Items>
+								</wfx:FormView>
+							</wfx:TabPage>
+							<wfx:TabPage ID="tabPointsAndRewards" Title="Points and Rewards">
+								<div style="text-align: center;">
+									<wfx:Meter ID="mtrPointsToday" Title="Today" DisplayStyle="Decimal" />
+									<wfx:Meter ID="mtrPointsToday" Title="This Month" DisplayStyle="Decimal" />
+									<wfx:Meter ID="mtrPointsToday" Title="This Year" DisplayStyle="Decimal" />
+								</div>
+								<wfx:ListView ID="lvPoints">
+									<Columns>
+										<wfx:ListViewColumn ID="lvcAmount" Title="Amount" />
+										<wfx:ListViewColumn ID="lvcType" Title="Type" />
+										<wfx:ListViewColumn ID="lvcComments" Title="Comments" />
+										<wfx:ListViewColumn ID="lvcUser" Title="User" />
+										<wfx:ListViewColumn ID="lvcDate" Title="Date" />
+									</Columns>
+									<Items>
+										<wfx:ListViewItem>
+											<Columns>
+												<wfx:ListViewItemColumn ID="lvcAmount" Content="50" />
+												<wfx:ListViewItemColumn ID="lvcType" Content="Deposit" />
+												<wfx:ListViewItemColumn ID="lvcComments" Content="Happy new year" />
+												<wfx:ListViewItemColumn ID="lvcUser" Content="System" />
+												<wfx:ListViewItemColumn ID="lvcDate" Content="2015-01-01" />
+											</Columns>
+										</wfx:ListViewItem>
+										<wfx:ListViewItem>
+											<Columns>
+												<wfx:ListViewItemColumn ID="lvcAmount" Content="200" />
+												<wfx:ListViewItemColumn ID="lvcType" Content="Deposit" />
+												<wfx:ListViewItemColumn ID="lvcComments" Content="Happy new year" />
+												<wfx:ListViewItemColumn ID="lvcUser" Content="System" />
+												<wfx:ListViewItemColumn ID="lvcDate" Content="2015-01-01" />
+											</Columns>
+										</wfx:ListViewItem>
+									</Items>
+								</wfx:ListView>
+							</wfx:TabPage>
+						</TabPages>
+					</wfx:TabContainer>
+				</wfx:Section>
+			</Content>
+		</Page>
+	</Pages>
+</Website>

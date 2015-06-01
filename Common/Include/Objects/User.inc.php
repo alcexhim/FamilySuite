@@ -100,35 +100,60 @@
 			return $item;
 		}
 		
-		public static function GetByCredentials($username, $password)
+		public static function Get()
 		{
 			$pdo = DataSystem::GetPDO();
 			
-			$query = "SELECT user_PasswordSalt FROM fs_Users WHERE user_UserName = :user_UserName";
+			$query = "SELECT * FROM fs_Users";
 			$statement = $pdo->prepare($query);
-			$statement->execute(array
-			(
-				":user_UserName" => $username
-			));
-			$values = $statement->fetch(PDO::FETCH_ASSOC);
-			$passwordSalt = $values["user_PasswordSalt"];
+			$statement->execute();
+			$count = $statement->rowCount();
 			
-			$passwordHash = hash("sha512", $password . $passwordSalt);
+			$retval = array();
+			for ($i = 0; $i < $count; $i++)
+			{
+				$values = $statement->fetch(PDO::FETCH_ASSOC);
+				$item = User::GetByAssoc($values);
+				$retval[] = $item;
+			}
+			return $retval;
+		}
+		
+		public static function GetByCredentials($username, $password = null)
+		{
+			$pdo = DataSystem::GetPDO();
 			
-			$query = "SELECT * FROM fs_Users WHERE user_UserName = :user_UserName AND user_PasswordHash = :user_PasswordHash";
+			$passwordHash = null;
+			if ($password != null)
+			{
+				$query = "SELECT user_PasswordSalt FROM fs_Users WHERE user_UserName = :user_UserName";
+				$statement = $pdo->prepare($query);
+				$statement->execute(array
+				(
+					":user_UserName" => $username
+				));
+				$values = $statement->fetch(PDO::FETCH_ASSOC);
+				
+				$passwordSalt = $values["user_PasswordSalt"];
+				$passwordHash = hash("sha512", $password . $passwordSalt);
+			}
+			
+			$query = "SELECT * FROM fs_Users WHERE user_UserName = :user_UserName";
+			if ($password != null) $query .= " AND user_PasswordHash = :user_PasswordHash";
 			$statement = $pdo->prepare($query);
-			$statement->execute(array
-			(
-				":user_UserName" => $username,
-				":user_PasswordHash" => $passwordHash
-			));
+			
+			$paramz = array(":user_UserName" => $username);
+			if ($password != null) $paramz[":user_PasswordHash"] = $passwordHash;
+			$statement->execute($paramz);
 			
 			$count = $statement->rowCount();
 			if ($count == 0) return null;
 			
 			$values = $statement->fetch(PDO::FETCH_ASSOC);
+			$item = User::GetByAssoc($values);
 			
-			return User::GetByAssoc($values);
+			$item->CanLogin = ($password != null); 
+			return $item;
 		}
 	}
 ?>
