@@ -54,6 +54,31 @@
 									</Items>
 								</wfx:ListView>
 							</wfx:TabPage>
+							<wfx:TabPage ID="tabAuditing" Title="Auditing">
+								<wfx:ListView ID="lvAuditing">
+									<Columns>
+										<wfx:ListViewColumn ID="lvcType" Title="Type" />
+										<wfx:ListViewColumn ID="lvcTimestamp" Title="Timestamp" />
+										<wfx:ListViewColumn ID="lvcStatus" Title="Status" />
+									</Columns>
+									<Items>
+										<wfx:ListViewItem>
+											<Columns>
+												<wfx:ListViewItemColumn ID="lvcType" Content="RADIUS Login" />
+												<wfx:ListViewItemColumn ID="lvcTimestamp" Content="2015-01-01 10:53" />
+												<wfx:ListViewItemColumn ID="lvcStatus" Content="Success" />
+											</Columns>
+										</wfx:ListViewItem>
+										<wfx:ListViewItem>
+											<Columns>
+												<wfx:ListViewItemColumn ID="lvcType" Content="Website Login" />
+												<wfx:ListViewItemColumn ID="lvcTimestamp" Content="2015-01-01 11:15" />
+												<wfx:ListViewItemColumn ID="lvcStatus" Content="Success" />
+											</Columns>
+										</wfx:ListViewItem>
+									</Items>
+								</wfx:ListView>
+							</wfx:TabPage>
 						</TabPages>
 					</wfx:TabContainer>
 				</wfx:Section>
