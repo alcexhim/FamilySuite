@@ -44,7 +44,7 @@ use FamilySuite\Objects\UserLogin;
 					if ($token != null)
 					{
 						$_SESSION["Authentication.LoginToken"] = $token->Token;
-						System::Redirect("~/");
+						System::RedirectFromLoginPage();
 					}
 					else
 					{
