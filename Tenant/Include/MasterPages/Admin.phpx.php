@@ -4,8 +4,9 @@
 	use Phast\CancelEventArgs;
 	use Phast\Parser\PhastPage;
 	use Phast\System;
-use FamilySuite\Objects\UserLogin;
-				
+	
+	use FamilySuite\Objects\UserLogin;
+	
 	class Admin extends PhastPage
 	{
 		public function OnInitializing(CancelEventArgs $e)

@@ -1,6 +1,7 @@
 <?php
 	namespace FamilySuite\Tenant\MasterPages;
-	
+
+	use Phast\CancelEventArgs;
 	use Phast\Parser\PhastPage;
 	
 	class Blank extends PhastPage
