@@ -8,8 +8,9 @@ use FamilySuite\Objects\UserLogin;
 				
 	class Admin extends PhastPage
 	{
-		public function OnInitializing($e)
+		public function OnInitializing(CancelEventArgs $e)
 		{
+			$e->RenderingPage->ClassList[] = "EnableHeader";
 			$e->RenderingPage->ClassList[] = "EnableSidebar";
 			
 			if ($e->RenderingPage->GetServerVariableValue("RequireLogin") != "false")
