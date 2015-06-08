@@ -73,6 +73,13 @@
 			}
 		}
 		
+		public static function GetCurrent()
+		{
+			$login = UserLogin::GetByCurrentToken();
+			if ($login == null) return null;
+			return $login->User;
+		}
+		
 		public static function GetByAssoc($values)
 		{
 			$item = new User();
