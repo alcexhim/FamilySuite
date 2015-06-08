@@ -211,6 +211,9 @@
 						<div class="Message">
 							<h1>Thank you!</h1>
 							<h3>We look forward to seeing you at the wedding!</h3>
+							<p>
+								<wfx:Button CssClass="Primary" IconName="search" Text="View Event Details" TargetURL="~/events/$(Path:eventID)" />
+							</p>
 						</div>
 					</div>
 				</wfx:Section>
@@ -235,6 +238,9 @@
 			<Content>
 				<wfx:Section PlaceholderID="Content">
 					<h1><html:Literal ID="litEventTitle" /></h1>
+					<!--
+					<wfx:Alert CssClass="Success" Title="You have already responded to this event">Thank you! Your presence is greatly appreciated.</wfx:Alert>
+					-->
 					<wfx:Window ID="wndGuestDetails" Title="Guest Details" Visible="false" Width="600px">
 						<ContentControls>
 							<wfx:FormView ID="formview1" Width="100%">
