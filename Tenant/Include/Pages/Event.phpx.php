@@ -18,6 +18,7 @@
 	use PDO;
 	
 	use FamilySuite\Objects\Event;
+	use FamilySuite\Objects\User;
 	
 	class EventPrintPage extends PhastPage
 	{
@@ -331,6 +332,14 @@
 			$this->InitializeInvitationsMeters($e->RenderingPage);
 			
 			$tbsTabs = $e->RenderingPage->GetControlByID("tbsTabs");
+			
+			$user = User::GetCurrent();
+			if ($user == null)
+			{
+				$tbsTabs->GetTabByID("pageInvitations")->Visible = false;
+				$tbsTabs->GetTabByID("pageResponses")->Visible = false;
+			}
+			
 			$tabPageID = $e->RenderingPage->GetPathVariableValue("tabPage");
 			if ($tabPageID != "")
 			{
