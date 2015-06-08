@@ -292,7 +292,7 @@
 									</div>
 									<div class="Column">
 										<h2>Related Events</h2>
-										<html:Paragraph ID="paraRelatedEvents" />
+										<html:Literal ID="litRelatedEvents" />
 									</div>
 								</div>
 							</wfx:TabPage>

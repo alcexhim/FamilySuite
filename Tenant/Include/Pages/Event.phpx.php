@@ -167,7 +167,7 @@
 			$cmdGetDirections = $tabPage->GetControlByID("cmdGetDirections");
 			$cmdGetDirections->TargetURL = $gMapsUrl;
 			
-			$paraRelatedEvents = $tabPage->GetControlByID("paraRelatedEvents");
+			$litRelatedEvents = $tabPage->GetControlByID("litRelatedEvents");
 			
 			$events = $event->GetRelatedEvents();
 			
@@ -185,7 +185,7 @@
 					
 					$ul->Controls[] = $li;
 				}
-				$paraRelatedEvents->Controls[] = $ul;
+				$litRelatedEvents->Controls[] = $ul;
 			}
 		}
 		private function InitializeInvitationsMeters($page)
