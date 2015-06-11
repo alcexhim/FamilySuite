@@ -4,6 +4,7 @@ RewriteEngine On
 # RewriteBase /
 
 RewriteRule ^StyleSheets/(.*)\.css$ lessc.php?filename=$1 [PT,L,QSA]
+RewriteRule ^Resources/(.*)/StyleSheets/(.*)\.css$ lessc.php?filename=Resources/$1/StyleSheets/$2 [PT,L,QSA]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
