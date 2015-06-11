@@ -20,8 +20,8 @@
 							</Items>
 						</wfx:FormView>
 						<div class="PageFooter">
-							<html:Anchor CssClass="Button" TargetURL="~/" TargetScript="history.back(); return false;">Cancel</html:Anchor>
-							<input type="submit" class="Button Primary" value="Log In" />
+							<wfx:Button TargetURL="~/" TargetScript="history.back(); return false;" Text="Cancel" />
+							<input type="submit" class="pwt-Button Primary" value="Log In" />
 						</div>
 					</html:Form>
 					<hr />
