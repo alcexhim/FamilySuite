@@ -43,14 +43,14 @@
 							<a class="Button Primary" href="#" onclick="wndThankYou.ShowDialog();">Sign</a>
 						</FooterControls>
 					</wfx:Window>
-					<div style="height: 960px;">
-						<h1><html:Literal Value="$(Configuration:Application.Title)" /></h1>
-						<!--
-							countdown coming soon 
-							don't forget to remove padding once the countdown's here
-						-->
-						<h2 class="pwt-fixed pwt-anchor-bottom pwt-anchor-left pwt-anchor-right" style="text-align: center; padding: 32px; font-size: 32pt; font-weight: 100;"> ' til the big day! </h2>
-					</div>
+					
+					<h1><html:Literal Value="$(Configuration:Application.Title)" /></h1>
+					<!--
+						countdown coming soon 
+						don't forget to remove padding once the countdown's here
+					-->
+					<h2 class="pwt-fixed pwt-anchor-bottom pwt-anchor-left pwt-anchor-right" style="text-align: center; padding: 32px; font-size: 32pt; font-weight: 100;"> ' til the big day! </h2>
+					<div style="color: #FFFFFF; padding: 16px" class="pwt-fixed pwt-anchor-bottom pwt-anchor-left pwt-anchor-right"><html:Literal Value="$(Configuration:Application.Copyright)" /></div>
 				</wfx:Section>
 			</Content>
 		</Page>

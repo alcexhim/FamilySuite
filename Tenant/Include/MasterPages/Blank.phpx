@@ -29,10 +29,12 @@
 				<div class="Content">
 					<wfx:SectionPlaceholder ID="Content" />
 				</div>
+				<!--
 				<html:Footer>
 					<p><html:Literal Value="$(Configuration:Application.Title)" /></p>
 					<p><html:Literal Value="$(Configuration:Application.Copyright)" /></p>
 				</html:Footer>
+				-->
 			</Content>
 		</MasterPage>
 	</MasterPages>
