@@ -6,6 +6,9 @@
 				<Reference TagPrefix="wfx" NamespacePath="Phast\WebControls" />
 				<Reference TagPrefix="html" NamespacePath="Phast\HTMLControls" />
 			</References>
+			<StyleSheets>
+				<StyleSheet FileName="~/Resources/AzBec/StyleSheets/MainPage.css" />
+			</StyleSheets>
 			<Content>
 				<wfx:Section PlaceholderID="Content">
 					<wfx:Window ID="wndThankYou" Title="Thank you!">
@@ -42,10 +45,11 @@
 					</wfx:Window>
 					<div style="height: 960px;">
 						<h1><html:Literal Value="$(Configuration:Application.Title)" /></h1>
-						<h3>Welcome to our family Web site</h3>
-						
-						<p>Family members, <html:Anchor TargetURL="~/dashboard">go here</html:Anchor> to access your dashboard.</p>
-						<p>Guests, please take some time to <html:Anchor TargetScript="wndGuestbook.ShowDialog(); return false;" TargetURL="~/guestbook">sign the guestbook</html:Anchor>!</p>
+						<!--
+							countdown coming soon 
+							don't forget to remove padding once the countdown's here
+						-->
+						<h2 class="pwt-fixed pwt-anchor-bottom pwt-anchor-left pwt-anchor-right" style="text-align: center; padding: 32px; font-size: 32pt; font-weight: 100;"> ' til the big day! </h2>
 					</div>
 				</wfx:Section>
 			</Content>
