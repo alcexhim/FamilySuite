@@ -19,10 +19,10 @@
 					</div>
 					<wfx:Menu Orientation="Horizontal">
 						<Items>
-							<wfx:MenuItemCommand Title="Wedding" />
-							<wfx:MenuItemCommand Title="House" />
-							<wfx:MenuItemCommand Title="Family" />
-							<wfx:MenuItemCommand Title="Contact" />
+							<wfx:MenuItemCommand Title="Wedding" TargetURL="~/rsvp" />
+							<!-- <wfx:MenuItemCommand Title="House" />  -->
+							<wfx:MenuItemCommand Title="Family" TargetURL="~/dashboard" />
+							<wfx:MenuItemCommand Title="Contact" TargetURL="~/contact" />
 						</Items>
 					</wfx:Menu>
 				</html:Navigation>
