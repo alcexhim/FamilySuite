@@ -17,14 +17,6 @@
 					<div class="Logo">
 						<html:Anchor TargetURL="~/"><span class="Primary"><html:Literal Value="$(Configuration:Application.Logo.Primary)" /></span><span class="Secondary"><html:Literal Value="$(Configuration:Application.Logo.Secondary)" /></span></html:Anchor>
 					</div>
-					<wfx:Menu Orientation="Horizontal">
-						<Items>
-							<wfx:MenuItemCommand Title="Wedding" />
-							<wfx:MenuItemCommand Title="House" />
-							<wfx:MenuItemCommand Title="Family" />
-							<wfx:MenuItemCommand Title="Contact" />
-						</Items>
-					</wfx:Menu>
 				</html:Navigation>
 				<html:Navigation CssClass="Sidebar">
 					<div class="UserInfo">
@@ -44,6 +36,11 @@
 								<Items>
 									<wfx:MenuItemCommand Title="Enroll New Member" />
 									<wfx:MenuItemCommand Title="Browse Current Members" TargetURL="~/members" />
+								</Items>
+							</wfx:MenuItemCommand>
+							<wfx:MenuItemCommand ID="mnuSidebarKiosks" Title="Kiosks" IconName="desktop">
+								<Items>
+									<wfx:MenuItemCommand ID="mnuSidebarKiosksDoorFront" Title="Front Door" TargetURL="~/kiosks/door-front" />
 								</Items>
 							</wfx:MenuItemCommand>
 						</Items>
