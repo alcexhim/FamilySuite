@@ -107,9 +107,9 @@
 									<wfx:Button ID="cmdAddExtraGuest" CssClass="Primary" Text="Add another guest" IconName="user-plus" />
 								</div>
 								<hr />
-								<div style="text-align: right; padding: 32px;">
-									<a class="Button" href="#">Cancel</a>
-									<a class="Button Primary" href="#">Confirm</a>
+								<div class="PageFooter">
+									<wfx:Button ID="cmdRSVPCancel" Text="Cancel" />
+									<wfx:Button ID="cmdRSVPConfirm" CssClass="Primary" Text="Confirm" />
 								</div>
 							</div>
 						</div>
@@ -137,8 +137,8 @@
 										</Items>
 									</wfx:FormView>
 									<div style="margin-top: 32px; text-align: right;">
-										<a class="Button Disabled" href="#">Back</a>
-										<a class="Button Primary" onclick="document.getElementById('wizard').NativeObject.SetSelectedPageIndex(1);">Next</a>
+										<wfx:Button ID="wizard_step1_cmdBack" CssClass="Disabled" Text="Back" />
+										<wfx:Button ID="wizard_step1_cmdNext" CssClass="Primary" OnClientClick="document.getElementById('wizard').NativeObject.SetSelectedPageIndex(1);" Text="Next" />
 									</div>
 								</wfx:WizardPage>
 								<wfx:WizardPage ID="page2" Title="What do you like to eat?" Description="Choose from three delicious meal plans">
@@ -176,8 +176,8 @@
 										<textarea id="txtSpecialDietaryNeeds" name="guest_SpecialDietaryNeeds" placeholder="Please describe any special dietary needs that require consideration" style="width: 100%;"></textarea>
 									</div>
 									<div style="margin-top: 32px; text-align: right;">
-										<a href="#" class="Button" onclick="document.getElementById('wizard').NativeObject.SetSelectedPageIndex(0);">Back</a>
-										<a href="#" class="Button Primary" id="wizard_step2_cmdNext">Next</a>
+										<wfx:Button OnClientClick="document.getElementById('wizard').NativeObject.SetSelectedPageIndex(0);" Text="Back" />
+										<wfx:Button ID="wizard_step2_cmdNext" CssClass="Primary" Text="Next" />
 									</div>
 								</wfx:WizardPage>
 								<wfx:WizardPage ID="page3" Title="Confirm your registration" Description="Let us know how many guests will be attending">
@@ -191,8 +191,8 @@
 									</wfx:FormView>
 									
 									<div style="margin-top: 32px; text-align: center;">
-										<a href="#" class="Button Success Large" onclick="document.getElementById('resp_Status').value=1; document.getElementById('form1').submit();">Yes, I will attend!</a>
-										<a href="#" class="Button Danger" onclick="document.getElementById('resp_Status').value=0; document.getElementById('form1').submit();">Regretfully, I cannot attend</a>
+										<wfx:Button ID="wizard_step3_cmdYes" CssClass="Success Large" OnClientClick="document.getElementById('resp_Status').value=1; document.getElementById('form1').submit();" Text="Yes, I will attend!" />
+										<wfx:Button ID="wizard_step3_cmdNo" CssClass="Danger" OnClientClick="document.getElementById('resp_Status').value=0; document.getElementById('form1').submit();" Text="Regretfully, I cannot attend" />
 									</div>
 								</wfx:WizardPage>
 							</Pages>
