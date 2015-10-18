@@ -105,8 +105,8 @@
 				{
 					// we're going to actually submit data now
 					$pdo = DataSystem::GetPDO();
-					$query = "INSERT INTO Responses (resp_EnteredName, resp_EnteredEmailAddress, resp_Message, resp_AssociatedNameID, resp_MealOptionID, resp_MealPlanComments, resp_GuestCount, resp_Status) VALUES (" .
-						":resp_EnteredName, :resp_EnteredEmailAddress, :resp_Message, :resp_AssociatedNameID, :resp_MealOptionID, :resp_MealPlanComments, :resp_GuestCount, :resp_Status)";
+					$query = "INSERT INTO fs_EventInvitationResponses (resp_EnteredName, resp_EnteredEmailAddress, resp_Message, resp_AssociatedNameID, resp_MealPlanID, resp_MealPlanComments, resp_GuestCount, resp_Status) VALUES (" .
+						":resp_EnteredName, :resp_EnteredEmailAddress, :resp_Message, :resp_AssociatedNameID, :resp_MealPlanID, :resp_MealPlanComments, :resp_GuestCount, :resp_Status)";
 					$statement = $pdo->prepare($query);
 					$statement->execute(array
 					(
@@ -114,7 +114,7 @@
 						":resp_EnteredEmailAddress" => $_POST["resp_EnteredEmailAddress"],
 						":resp_Message" => $_POST["resp_Message"],
 						":resp_AssociatedNameID" => null,
-						":resp_MealOptionID" => $_POST["guest_MealPlanID"],
+						":resp_MealPlanID" => $_POST["guest_MealPlanID"],
 						":resp_MealPlanComments" => $_POST["guest_SpecialDietaryNeeds"],
 						":resp_GuestCount" => $_POST["resp_GuestCount"],
 						":resp_Status" => $_POST["resp_Status"]
@@ -196,58 +196,46 @@
 			$mtrAttending = $tabPage->GetControlByID("mtrAttending");
 			$mtrDeclining = $tabPage->GetControlByID("mtrDeclining");
 			$mtrPending = $tabPage->GetControlByID("mtrPending");
+
+			$event = Event::GetByIDOrName($page->GetPathVariableValue("eventID"));
+			$eventResponseCount = $event->CountResponses();
 			
-			$pdo = DataSystem::GetPDO();
-			$query = "SELECT (SELECT COUNT(*) FROM Addresses) AS count_Invited, (SELECT COUNT(*) FROM Responses WHERE resp_Status = 1) AS count_Attending, (SELECT COUNT(*) FROM Responses WHERE resp_Status = 0) AS count_Declining";
-			$statement = $pdo->prepare($query);
-			$statement->execute();
-			
-			$values = $statement->fetch(PDO::FETCH_ASSOC);
 			$mtrInvited->MinimumValue = 0;
-			$mtrInvited->MaximumValue = $values["count_Invited"];
-			$mtrInvited->CurrentValue = $values["count_Invited"];
+			$mtrInvited->MaximumValue = $eventResponseCount->Invited;
+			$mtrInvited->CurrentValue = $eventResponseCount->Invited;
 
 			$mtrAttending->MinimumValue = 0;
-			$mtrAttending->MaximumValue = $values["count_Invited"];
-			$mtrAttending->CurrentValue = $values["count_Attending"];
+			$mtrAttending->MaximumValue = $eventResponseCount->Invited;
+			$mtrAttending->CurrentValue = $eventResponseCount->Attending;
 			
 			$mtrDeclining->MinimumValue = 0;
-			$mtrDeclining->MaximumValue = $values["count_Invited"];
-			$mtrDeclining->CurrentValue = $values["count_Declining"];
+			$mtrDeclining->MaximumValue = $eventResponseCount->Invited;
+			$mtrDeclining->CurrentValue = $eventResponseCount->Declining;
 			
 			$mtrPending->MinimumValue = 0;
-			$mtrPending->MaximumValue = $values["count_Invited"];
-			$mtrPending->CurrentValue = ($values["count_Invited"] - $values["count_Attending"] - $values["count_Declining"]);
+			$mtrPending->MaximumValue = $eventResponseCount->Invited;
+			$mtrPending->CurrentValue = $eventResponseCount->Pending;
 		}
 		private function InitializeInvitations($page)
 		{
 			$tabPage = $page->GetControlByID("tbsTabs")->GetTabByID("pageInvitations");
 			$lvInvitations = $tabPage->GetControlByID("lvInvitations");
 			
-			// we're going to actually submit data now
-			$pdo = DataSystem::GetPDO();
-			$query = "SELECT *, fs_Countries.country_Title FROM Addresses, fs_Countries WHERE fs_Countries.country_ID = Addresses.CountryID";
-			$statement = $pdo->prepare($query);
-			$statement->execute();
-			$count = $statement->rowCount();
+			$event = Event::GetByIDOrName($page->GetPathVariableValue("eventID"));
+			$invitations = $event->GetInvitations();
 			
-			$items = array();
-			
-			$countChicken = 0;
-			$countBeef = 0;
-			$countVegetarian = 0;
-			
+			$count = count($invitations);
 			for ($i = 0; $i < $count; $i++)
 			{
-				$values = $statement->fetch(PDO::FETCH_ASSOC);
+				$invitation = $invitations[$i];
 				$items[] = new ListViewItem(array
 				(
-					new ListViewItemColumn("lvcName", $values["Name"]),
-					new ListViewItemColumn("lvcStreetAddress", $values["StreetAddress"]),
-					new ListViewItemColumn("lvcCity", $values["City"]),
-					new ListViewItemColumn("lvcState", $values["State"]),
-					new ListViewItemColumn("lvcPostalCode", $values["PostalCode"]),
-					new ListViewItemColumn("lvcCountry", $values["country_Title"])
+					new ListViewItemColumn("lvcName", $invitation->Name),
+					new ListViewItemColumn("lvcStreetAddress", $invitation->StreetAddress),
+					new ListViewItemColumn("lvcCity", $invitation->City),
+					new ListViewItemColumn("lvcState", $invitation->State),
+					new ListViewItemColumn("lvcPostalCode", $invitation->PostalCode),
+					new ListViewItemColumn("lvcCountry", $invitation->Country->Title)
 				));
 			}
 			
@@ -259,33 +247,29 @@
 			$lvInvitees = $tabPage->GetControlByID("lvInvitees");
 			
 			// we're going to actually submit data now
-			$pdo = DataSystem::GetPDO();
-			$query = "SELECT *, fs_EventGuestTypes.guesttype_Title, fs_EventInviteSources.invitesource_Title, MealPlans.Title AS mealplan_Title FROM Responses, fs_EventGuestTypes, fs_EventInviteSources, MealPlans WHERE Responses.resp_GuestTypeID = fs_EventGuestTypes.guesttype_ID AND Responses.resp_InviteSourceID = fs_EventInviteSources.invitesource_ID AND Responses.resp_MealOptionID = MealPlans.ID";
-			$statement = $pdo->prepare($query);
-			$statement->execute();
-			$count = $statement->rowCount();
-				
-			$items = array();
-				
+			$event = Event::GetByIDOrName($page->GetPathVariableValue("eventID"));
+			$responses = $event->GetResponses();
+			
 			$countChicken = 0;
 			$countBeef = 0;
 			$countVegetarian = 0;
-				
+			
+			$count = count($responses);
 			for ($i = 0; $i < $count; $i++)
 			{
-				$values = $statement->fetch(PDO::FETCH_ASSOC);
+				$response = $responses[$i];
 				$items[] = new ListViewItem(array
 				(
-					new ListViewItemColumn("lvcGuest", $values["resp_EnteredName"]),
-					new ListViewItemColumn("lvcAttending", $values["resp_Status"] == 1 ? "Yes" : "No"),
-					new ListViewItemColumn("lvcGuestCount", $values["resp_GuestCount"]),
-					new ListViewItemColumn("lvcMealPlan", $values["mealplan_Title"] . ($values["resp_MealPlanComments"] != "" ? ("<br /><em>" . $values["resp_MealPlanComments"] . "</em>") : "")),
-					new ListViewItemColumn("lvcMessage", $values["resp_Message"]),
-					new ListViewItemColumn("lvcGuestType", $values["guesttype_Title"]),
-					new ListViewItemColumn("lvcInviteSource", $values["invitesource_Title"])
+					new ListViewItemColumn("lvcGuest", $response->EnteredName),
+					new ListViewItemColumn("lvcAttending", $response->Status ? "Yes" : "No"),
+					new ListViewItemColumn("lvcGuestCount", $response->GuestCount),
+					new ListViewItemColumn("lvcMealPlan", $response->MealPlan->Title . ($response->MealPlanComments != "" ? ("<br /><em>" . $values["resp_MealPlanComments"] . "</em>") : "")),
+					new ListViewItemColumn("lvcMessage", $response->Message),
+					new ListViewItemColumn("lvcGuestType", $response->GuestType->Title),
+					new ListViewItemColumn("lvcInviteSource", $response->InviteSource->Title)
 				));
-			
-				switch ($values["resp_MealOptionID"])
+				
+				switch ($response->MealPlan->ID)
 				{
 					case 1:
 					{
@@ -333,11 +317,19 @@
 			
 			$tbsTabs = $e->RenderingPage->GetControlByID("tbsTabs");
 			
+			$tabPageID = $e->RenderingPage->GetPathVariableValue("tabPage");
+			
 			$user = User::GetCurrent();
 			if ($user == null)
 			{
 				$tbsTabs->GetTabByID("pageInvitations")->Visible = false;
 				$tbsTabs->GetTabByID("pageResponses")->Visible = false;
+				
+				if ($tabPageID != "" && $tabPageID != "details")
+				{
+					System::RedirectToLoginPage();
+					return;
+				}
 			}
 			
 			$tabPageID = $e->RenderingPage->GetPathVariableValue("tabPage");
