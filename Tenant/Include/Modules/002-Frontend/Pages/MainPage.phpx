@@ -39,18 +39,51 @@
 							</wfx:FormView>
 						</ContentControls>
 						<FooterControls>
-							<a href="#" class="Button" onclick="wndGuestbook.Hide();">Close</a>
-							<a class="Button Primary" href="#" onclick="wndThankYou.ShowDialog();">Sign</a>
+							<wfx:Button TargetScript="wndGuestbook.Hide();" Text="Close" />
+							<wfx:Button CssClass="Primary" TargetScript="wndThankYou.ShowDialog();" Text="Sign" />
 						</FooterControls>
 					</wfx:Window>
 					
 					<h1><html:Literal Value="$(Configuration:Application.Title)" /></h1>
-					<!--
-						countdown coming soon 
-						don't forget to remove padding once the countdown's here
-					-->
-					<h2 class="pwt-fixed pwt-anchor-bottom pwt-anchor-left pwt-anchor-right" style="text-align: center; padding: 32px; font-size: 32pt; font-weight: 100;"> ' til the big day! </h2>
-					<div style="color: #FFFFFF; padding: 16px" class="pwt-fixed pwt-anchor-bottom pwt-anchor-left pwt-anchor-right"><html:Literal Value="$(Configuration:Application.Copyright)" /></div>
+					
+					<div class="ColumnContainer TwoColumn">
+						<div class="Column">
+							<wfx:Panel CssClass="Inverse" Title="Guestbook">
+								<HeaderControls>
+									<wfx:Button CssClass="Primary" OnClientClick="wndGuestbook.ShowDialog();" Text="Sign Guestbook" />
+								</HeaderControls>
+								<ContentControls>
+									<wfx:ListView ID="lvGuestbook">
+										<Columns>
+											<wfx:ListViewColumn ID="lvcName" Title="Name" />
+											<wfx:ListViewColumn ID="lvcMessage" Title="Message" />
+											<wfx:ListViewColumn ID="lvcDate" Title="Date" />
+										</Columns>
+										<Items>
+											<wfx:ListViewItem>
+												<Columns>
+													<wfx:ListViewItemColumn ID="lvcName" Content="Michael" />
+													<wfx:ListViewItemColumn ID="lvcMessage" Content="I was the groom!" />
+													<wfx:ListViewItemColumn ID="lvcDate" Content="June 20th, 2015" />
+												</Columns>
+											</wfx:ListViewItem>
+										</Items>
+									</wfx:ListView>
+								</ContentControls>
+							</wfx:Panel>
+						</div>
+						<div class="Column">
+							<wfx:Panel CssClass="Inverse" Title="Photo Album">
+								<ContentControls>
+									<p>
+										Coming soon! Stay tuned for the photo album including Wedding and Honeymoon Photos!
+									</p>
+								</ContentControls>
+							</wfx:Panel>
+						</div>
+					</div>
+					
+					<div style="color: #C0C0C0; padding: 16px" class="pwt-fixed pwt-anchor-bottom pwt-anchor-left pwt-anchor-right"><html:Literal Value="$(Configuration:Application.Copyright)" /></div>
 				</wfx:Section>
 			</Content>
 		</Page>
