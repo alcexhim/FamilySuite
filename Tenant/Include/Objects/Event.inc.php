@@ -79,7 +79,7 @@
 		public function GetRelatedEvents()
 		{
 			$pdo = DataSystem::GetPDO();
-			$query = "SELECT * FROM Events, fs_RelatedEvents WHERE Events.event_ID = fs_RelatedEvents.related_SecondaryEvent AND fs_RelatedEvents.related_PrimaryEvent = :related_PrimaryEventID";
+			$query = "SELECT * FROM fs_Events, fs_RelatedEvents WHERE fs_Events.event_ID = fs_RelatedEvents.related_SecondaryEvent AND fs_RelatedEvents.related_PrimaryEvent = :related_PrimaryEventID";
 			$statement = $pdo->prepare($query);
 			$statement->execute(array
 			(
