@@ -158,17 +158,24 @@
 			$litEventDescription->Value = $event->Description;
 			
 			$fvDetails = $tabPage->GetControlByID("fvDetails");
-			$fvDetails->GetItemByID("lblWhen")->Value = $event->BeginTimestamp->format("l, F j, Y");
+			
+			$beginDate = $event->BeginTimestamp->format("l, F j, Y");
+			$beginTime = $event->BeginTimestamp->format("g:i A");
+			$endTime = $event->EndTimestamp->format("g:i A");
+			
+			$fvDetails->GetItemByID("lblWhen")->Value = $beginDate . "<br />" . $beginTime . " - " . $endTime;
 			$fvDetails->GetItemByID("lblWhere")->Value = $event->Location->ToHTML();
 			
 			$gMapsUrl = "https://www.google.com/maps/place/";
-			$gMapsUrl .= $event->Location->Title . ", " . $event->Location->StreetAddress . ", " . $event->Location->City . ", " . $event->Location->State . " " . $event->Location->PostalCode;
+			// $gMapsUrl .= $event->Location->Title . ", ";
+			$gMapsUrl .= $event->Location->StreetAddress . ", " . $event->Location->City . ", " . $event->Location->State . " " . $event->Location->PostalCode;
 			$gMapsUrl = str_replace(" ", "+", $gMapsUrl);
 
 			$cmdGetDirections = $tabPage->GetControlByID("cmdGetDirections");
 			$cmdGetDirections->TargetURL = $gMapsUrl;
 			
 			$litRelatedEvents = $tabPage->GetControlByID("litRelatedEvents");
+			$hdrRelatedEvents = $tabPage->GetControlByID("hdrRelatedEvents");
 			
 			$events = $event->GetRelatedEvents();
 			
@@ -187,6 +194,11 @@
 					$ul->Controls[] = $li;
 				}
 				$litRelatedEvents->Controls[] = $ul;
+				$hdrRelatedEvents->Visible = true;
+			}
+			else
+			{
+				$hdrRelatedEvents->Visible = false;
 			}
 		}
 		private function InitializeInvitationsMeters($page)
