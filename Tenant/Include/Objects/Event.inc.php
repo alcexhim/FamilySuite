@@ -59,7 +59,7 @@
 		public static function GetByIDOrName($idOrName)
 		{
 			$pdo = DataSystem::GetPDO();
-			$query = "SELECT * FROM Events WHERE event_Name = :event_IDOrName OR event_ID = :event_IDOrName";
+			$query = "SELECT * FROM fs_Events WHERE event_Name = :event_IDOrName OR event_ID = :event_IDOrName";
 			$statement = $pdo->prepare($query);
 			$statement->execute(array
 			(
@@ -79,7 +79,7 @@
 		public function GetRelatedEvents()
 		{
 			$pdo = DataSystem::GetPDO();
-			$query = "SELECT * FROM Events, fs_RelatedEvents WHERE Events.event_ID = fs_RelatedEvents.related_SecondaryEvent AND fs_RelatedEvents.related_PrimaryEvent = :related_PrimaryEventID";
+			$query = "SELECT * FROM fs_Events, fs_RelatedEvents WHERE fs_Events.event_ID = fs_RelatedEvents.related_SecondaryEvent AND fs_RelatedEvents.related_PrimaryEvent = :related_PrimaryEventID";
 			$statement = $pdo->prepare($query);
 			$statement->execute(array
 			(
@@ -95,6 +95,88 @@
 				if ($item != null) $retval[] = $item;
 			}
 			return $retval;
+		}
+		
+		/**
+		 * Counts the number of invited, attending, declining, and pending responses to
+		 * invitations for this event.
+		 */
+		public function CountResponses()
+		{
+			$pdo = DataSystem::GetPDO();
+			$query = "SELECT (SELECT COUNT(*) FROM Addresses WHERE invitation_EventID = :EventID) AS count_Invited, (SELECT COUNT(*) FROM fs_EventInvitationResponses WHERE resp_EventID = :EventID AND resp_Status = 1) AS count_Attending, (SELECT COUNT(*) FROM fs_EventInvitationResponses WHERE resp_EventID = :EventID AND resp_Status = 0) AS count_Declining";
+			$statement = $pdo->prepare($query);
+			$statement->execute(array
+			(
+				":EventID" => $this->ID
+			));
+			
+			$values = $statement->fetch(PDO::FETCH_ASSOC);
+			
+			$countInvited = $values["count_Invited"];
+			$countAttending = $values["count_Attending"];
+			$countDeclining = $values["count_Declining"];
+			
+			return new EventResponseCount($countInvited, $countAttending, $countDeclining);
+		}
+		
+		public function GetInvitations()
+		{
+			$pdo = DataSystem::GetPDO();
+			$query = "SELECT *, fs_Countries.country_Title FROM Addresses, fs_Countries WHERE Addresses.invitation_EventID = " . $this->ID . " AND fs_Countries.country_ID = Addresses.CountryID";
+			$statement = $pdo->prepare($query);
+			$statement->execute();
+			$count = $statement->rowCount();
+			
+			$retval = array();
+			for ($i = 0; $i < $count; $i++)
+			{
+				$values = $statement->fetch(PDO::FETCH_ASSOC);
+				$item = EventInvitation::GetByAssoc($values);
+				$retval[] = $item;
+			}
+			return $retval;
+		}
+		/**
+		 * Gets all the EventInvitationResponses associated with this Event.
+		 * @var EventInvitationResponse
+		 */
+		public function GetResponses()
+		{
+			$pdo = DataSystem::GetPDO();
+			$query = "SELECT *, fs_EventGuestTypes.guesttype_Title, fs_EventInviteSources.invitesource_Title FROM fs_EventInvitationResponses, fs_EventGuestTypes, fs_EventInviteSources WHERE fs_EventInvitationResponses.resp_EventID = :resp_EventID AND fs_EventInvitationResponses.resp_GuestTypeID = fs_EventGuestTypes.guesttype_ID AND fs_EventInvitationResponses.resp_InviteSourceID = fs_EventInviteSources.invitesource_ID";
+			$statement = $pdo->prepare($query);
+			$statement->execute
+			(
+				array
+				(
+					":resp_EventID" => $this->ID
+				)
+			);
+			$count = $statement->rowCount();
+			$retval = array();
+			for ($i = 0; $i < $count; $i++)
+			{
+				$values = $statement->fetch(PDO::FETCH_ASSOC);
+				$item = EventInvitationResponse::GetByAssoc($values);
+				$retval[] = $item;
+			}
+			return $retval;
+		}
+	}
+	class EventResponseCount
+	{
+		public $Invited;
+		public $Attending;
+		public $Declining;
+		public $Pending;
+		
+		public function __construct($invited, $attending, $declining)
+		{
+			$this->Invited = $invited;
+			$this->Attending = $attending;
+			$this->Declining = $declining;
+			$this->Pending = $this->Invited - $this->Attending - $this->Declining;
 		}
 	}
 	
