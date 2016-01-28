@@ -28,7 +28,7 @@
 			header("Content-Disposition: attachment; filename=addresses.csv");
 			
 			$pdo = DataSystem::GetPDO();
-			$statement = $pdo->prepare("SELECT * FROM Addresses");
+			$statement = $pdo->prepare("SELECT * FROM fs_Addresses");
 			$result = $statement->execute();
 			
 			if ($result === false)
@@ -64,7 +64,7 @@
 				$country = "";
 				if ($values["CountryID"] != 1)
 				{
-					$query = "SELECT * FROM Countries WHERE ID = " . $values["CountryID"];
+					$query = "SELECT * FROM fs_Countries WHERE ID = " . $values["CountryID"];
 					$statement1 = $pdo->prepare($query);
 					$result1 = $statement1->execute();
 					$values1 = $statement1->fetch(PDO::FETCH_ASSOC);

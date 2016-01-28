@@ -104,7 +104,7 @@
 		public function CountResponses()
 		{
 			$pdo = DataSystem::GetPDO();
-			$query = "SELECT (SELECT COUNT(*) FROM Addresses WHERE invitation_EventID = :EventID) AS count_Invited, (SELECT COUNT(*) FROM fs_EventInvitationResponses WHERE resp_EventID = :EventID AND resp_Status = 1) AS count_Attending, (SELECT COUNT(*) FROM fs_EventInvitationResponses WHERE resp_EventID = :EventID AND resp_Status = 0) AS count_Declining";
+			$query = "SELECT (SELECT COUNT(*) FROM fs_Addresses WHERE invitation_EventID = :EventID) AS count_Invited, (SELECT COUNT(*) FROM fs_EventInvitationResponses WHERE resp_EventID = :EventID AND resp_Status = 1) AS count_Attending, (SELECT COUNT(*) FROM fs_EventInvitationResponses WHERE resp_EventID = :EventID AND resp_Status = 0) AS count_Declining";
 			$statement = $pdo->prepare($query);
 			$statement->execute(array
 			(
@@ -123,7 +123,7 @@
 		public function GetInvitations()
 		{
 			$pdo = DataSystem::GetPDO();
-			$query = "SELECT *, fs_Countries.country_Title FROM Addresses, fs_Countries WHERE Addresses.invitation_EventID = " . $this->ID . " AND fs_Countries.country_ID = Addresses.CountryID";
+			$query = "SELECT *, fs_Countries.country_Title FROM fs_Addresses, fs_Countries WHERE fs_Addresses.invitation_EventID = " . $this->ID . " AND fs_Countries.country_ID = fs_Addresses.CountryID";
 			$statement = $pdo->prepare($query);
 			$statement->execute();
 			$count = $statement->rowCount();
