@@ -8,6 +8,7 @@
 			</References>
 			<StyleSheets>
 				<StyleSheet FileName="~/Resources/AzBec/StyleSheets/MainPage.css" />
+				<StyleSheet FileName="$(Configuration:System.FontsPath)/GreatVibes/GreatVibes.css" />
 			</StyleSheets>
 			<Content>
 				<wfx:Section PlaceholderID="Content">
@@ -44,7 +45,7 @@
 						</FooterControls>
 					</wfx:Window>
 					
-					<h1><html:Literal Value="$(Configuration:Application.Title)" /></h1>
+					<h1 style="text-align: center; font-family: 'Great Vibes'; font-weight: 300;"><html:Literal Value="$(Configuration:Application.Title)" /></h1>
 					
 					<div class="ColumnContainer TwoColumn">
 						<div class="Column">
